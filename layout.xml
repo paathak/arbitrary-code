@@ -1,59 +1,53 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <layout onLaunch="launch_home" onVolumeUp="volume_up" onVolumeDown="volume_down" onResume="play_pause" onPause="pause" color="#000000">
-  <grid>
-    <!-- row>
-      <button icon="vdown" onTap="volume_down" />
-      <button icon="vmute" onTap="volume_mute" />
-      <button icon="vup" onTap="volume_up" />
-    </row-->
-    <row>
-      <button icon="left" onTap="back" />
-      <button icon="docclose" onTap="close_tab" />
-      <button icon="right" onTap="next_page" />
-    </row>
-	    <!--row>
-      <button icon="docleft" onTap="previous_tab" />
-      <button icon="docnew" onTap="new_tab" />
-	  <button text="Home" onTap="launch_home" />
-      <button icon="docright" onTap="next_tab" />
-    </row -->
-    <row>
-      <button icon="rwd" onTap="rewind" />
-      <button icon="playpause" onTap="play_pause" />
-      <button icon="ff" onTap="forward" />
-    </row>
-    <row>
-      <button icon="fullscreen" onTap="fullscreen" />
-      <button text="Esc" onTap="window" />
-	  <button text="m" onTap="m_mute" />
-	  <button icon="vmute" onTap="volume_mute" />
-    </row>
-    <row>
-      <button text="JioHotstar" onTap="launch_hotstar" color="#191970" />
-	  <button text="Home" onTap="launch_home" />
-	  <button icon="up" onTap="scroll_up" />
-	  <button text="SonyLiv" onTap="launch_jc" color="#DE3163" />
-    </row>
-    <row>
-	  <button icon="refresh" onTap="refresh" color="#de7e5d" />
-	  <button text="NewTab" onTap="new_tab" />
-	  <button icon="down" onTap="scroll_down" />
-	  <button text="YouTube" onTap="launch_yt" color="#FF0000" />
-    </row>
-	    <row weight = "4" color="#808080">
-		<touch id="touch"
-			ondown="down"
-			onup="up"
-			onhold="hold"
-			ontap="tap" 
-			ondoubletap="double" 
-			ontouchdelta="delta"
-			text="Touch!" />
-	  </row>
-	  <row weight="0" color="808080">
-		<button text="L" ontap="left" />
-		<button text="R" ontap="right" />
-	  </row>
-	  
-  </grid>
+    <grid>
+        <row>
+            <button text="Sleep" onTap="sleep" />
+            <button text="close" onTap="close_app" />
+            <button text="Shutdown" onTap="shutdown" />
+        </row>
+        <row>
+            <button icon="docnew" onTap="new_tab" />
+            <button icon="web" onTap="address" />
+            <button icon="docclose" onTap="close_tab" />
+        </row>
+        <row>
+              <button icon="rwd" onTap="rewind" />
+              <button icon="playpause" onTap="play_pause" />
+              <button icon="ff" onTap="forward" />
+        </row>        
+        <row weight="4" color="#D3D3D3">
+		    <touch id="touch"
+			    ondown="down"
+			    onup="up"
+			    onhold="hold"
+			    ontap="tap" 
+			    ondoubletap="double" 
+			    ontouchdelta="delta"
+			    text="Touch!" />
+	      </row>
+	      <row weight="wrap" color="#D3D3D3">
+		    <button text="L" ontap="left" />
+		    <button text="R" ontap="right" />
+	      </row>
+          <row>
+            <button icon="vup" onTap="volume_up" />
+            <button text="Home" onTap="launch_home" />
+            <button icon="up" onTap="scroll_up" />
+          </row>
+          <row>
+            <button icon="vdown" onTap="volume_down" />
+            <button icon="vmute" onTap="volume_mute" />
+            <button icon="down" onTap="scroll_down" />
+          </row>
+          <row>
+              <button icon="fullscreen" onTap="fullscreen" />
+              <button text="Esc" onTap="window" />
+              <!--<button text="PgUp" onTap="pg_up" />
+              <button text="PgDn" onTap="pg_down" />-->
+          </row>
+
+    </grid>
+
+
 </layout>
