@@ -3,6 +3,64 @@ local win = libs.win;
 local utf8 = libs.utf8;
 
 
+
+
+
+--@help Put system in sleep state
+actions.sleep = function ()
+	os.execute("systemctl suspend")
+end
+
+--@help Close current tab
+actions.close_app = function()
+	--actions.switch();
+	keyboard.stroke("alt", "f4");
+end
+
+--@help System shutdown
+actions.shutdown = function ()
+    os.execute("systemctl poweroff");
+end
+
+--@help Open new tab
+actions.new_tab = function()
+	--actions.switch();
+	keyboard.stroke("control", "T");
+end
+
+--@help Type address
+actions.address = function()
+	--actions.switch();
+	keyboard.stroke("control", "L");
+	device.keyboard();
+end
+
+--@help Close current tab
+actions.close_tab = function()
+	--actions.switch();
+	keyboard.stroke("control", "W");
+end
+
+--@help Seek forward
+actions.forward = function()
+	-- actions.switch();
+	keyboard.stroke("right");  
+end
+
+--@help Toggle playback state
+actions.play_pause = function()
+	-- actions.switch();
+	keyboard.stroke("space");
+end
+
+--@help Seek backward
+actions.rewind = function()
+	-- actions.switch();
+	keyboard.stroke("left");
+end
+
+
+
 dragging = false;
 
 local mouse = libs.mouse;
@@ -55,71 +113,15 @@ actions.right = function ()
 	mouse.click("right");
 end
 
-
--- function FindPlayerWindow(browserClass)
--- 	-- 1. Find all windows for the specified browser window class (i.e. all tabs)
--- 	-- 2. For each "tab" check if the title starts with "Hotstar" (i.e. a Hotstar tab)
--- 	local hwnds = win.findall(0, browserClass, nil, false);
--- 	for i,hwnd in ipairs(hwnds) do
--- 		local title = win.title(hwnd);
--- 		print(title);
--- 		if utf8.startswith(title, "Disney") then
--- 			return hwnd;
--- 		end
--- 	end
--- 	return 0;
--- end
-
--- function FindWindow()
--- 	local hwnd = 0;
--- 	-- Check Chrome
--- 	hwnd = FindPlayerWindow("Chrome_WidgetWin_1");
--- 	if (hwnd ~= 0) then 
--- 		print("chrome");
--- 		return hwnd; 
--- 	end
--- 	-- Check FF
--- 	hwnd = FindPlayerWindow("MozillaWindowClass");
--- 	if (hwnd ~= 0) then 
--- 		print("ff");   
--- 		return hwnd; 
--- 	end
--- 	-- Check Edge
--- 	hwnd = FindPlayerWindow("ApplicationFrameWindow");
--- 	if (hwnd ~= 0) then
--- 		print("edge");
--- 		return hwnd;
--- 	end
--- 	return 0;
--- end
-
--- actions.switch = function ()
--- 	local hwnd = FindWindow();
--- 	if (hwnd ~= 0) then
--- 		win.switchto(hwnd);
--- 		os.sleep(100);
--- 		win.switchto(hwnd);
--- 	end
--- end
-
---@help Launch Hotstar site
-actions.launch_hotstar = function ()
-	os.open("http://www.hotstar.com/");
-end
-
---@help Launch Youtube site
-actions.launch_yt = function ()
-	os.open("http://www.youtube.com/");
-end
-
---@help Launch Sony Liv site
-actions.launch_jc = function ()
-	os.open("http://www.sonyliv.com/");
-end
-
 --@help Launch Home site
 actions.launch_home = function ()
    keyboard.stroke("alt", "Home");
+end
+
+
+--@help Raise volume
+actions.volume_up = function()
+	keyboard.stroke("volumeup");
 end
 
 --@help Lower volume
@@ -132,43 +134,16 @@ actions.volume_mute = function()
 	keyboard.stroke("volumemute");
 end
 
-actions.m_mute = function()
-	keyboard.stroke("m");
-end
-	
-
---@help Raise volume
-actions.volume_up = function()
-	keyboard.stroke("volumeup");
-end
-
---@help Pause playback
-actions.pause = function()
+--@help Scroll page up
+actions.scroll_up = function()
 	-- actions.switch();
-	keyboard.stroke("next");
+	keyboard.stroke("up");
 end
 
---@help Toggle playback state
-actions.play_pause = function()
+--@help Scroll page down
+actions.scroll_down = function()
 	-- actions.switch();
-	keyboard.stroke("space");
-end
-
---@help Select current item
-actions.select = function()
-	os.open("http://www.hotstar.com/");
-end
-
---@help Seek forward
-actions.forward = function()
-	-- actions.switch();
-	keyboard.stroke("right");  
-end
-
---@help Seek backward
-actions.rewind = function()
-	-- actions.switch();
-	keyboard.stroke("left");
+	keyboard.stroke("down");
 end
 
 --@help Fullscreen view
@@ -183,20 +158,10 @@ actions.window = function()
 	keyboard.stroke("escape");
 end
 
-actions.skip_intro = function()
-	keyboard.stroke("s");
-end
-
---@help Scroll page down
-actions.scroll_down = function()
-	-- actions.switch();
-	keyboard.stroke("down");
-end
-
 --@help Scroll page up
-actions.scroll_up = function()
+actions.pg_up = function()
 	-- actions.switch();
-	keyboard.stroke("up");
+	keyboard.stroke("pgup");
 end
 
 --@help Scroll page down
@@ -205,51 +170,12 @@ actions.pg_down = function()
 	keyboard.stroke("pgdown");
 end
 
---@help Scroll page up
-actions.pg_up = function()
-	-- actions.switch();
-	keyboard.stroke("pgup");
-end
-
---@help Refresh current page
-actions.refresh = function()
-	-- actions.switch();
-	keyboard.stroke("f5");
-end
 
 
-actions.back = function()
-	-- actions.switch();
-	keyboard.stroke("menu", "left");
-end
 
---@help Close current tab
-actions.close_tab = function()
-	-- actions.switch();
-	keyboard.stroke("control", "W");
-end
 
---@help Navigate tab forward
-actions.next_page = function()
-	-- actions.switch();
-	keyboard.stroke("menu", "right");
-end
 
---@help Open new tab
-actions.new_tab = function()
-	-- actions.switch();
-	keyboard.stroke("control", "T");
-end
 
---@help Go to next tab
-actions.next_tab = function()
-	-- actions.switch();
-	keyboard.stroke("lctrl", "pagedown");
-end
 
---@help Go to previous tab
-actions.previous_tab = function()
-	-- actions.switch();
-	keyboard.stroke("lctrl", "pageup");
-end
-	
+
+
