@@ -59,56 +59,49 @@ actions.rewind = function()
 	keyboard.stroke("left");
 end
 
-dragging = false;
-local mouse = libs.mouse;
+dragging = false
+local mouse = libs.mouse
 
-local SPEED = 2.5
-local SCROLL_SPEED = 0.15
+local SPEED = 2
 
 actions.tap = function ()
-	if dragging then
-		mouse.dragend();
-		mouse.up();
-		dragging = false;
-	else
-		mouse.click("left");
-	end
+    if dragging then
+        mouse.dragend()
+        mouse.up()
+        dragging = false
+    else
+        mouse.click("left")
+    end
 end
 
 actions.hold = function ()
-	mouse.dragbegin();
-	mouse.down();
-	dragging = true;
+    mouse.dragbegin()
+    mouse.down()
+    dragging = true
 end
 
 actions.up = function ()
-	if dragging then
-		mouse.dragend();
-		mouse.up();
-		dragging = false;
-	end
+    if dragging then
+        mouse.dragend()
+        mouse.up()
+        dragging = false
+    end
 end
 
 actions.delta = function (id, x, y)
-	if id == 2 then
-		-- two-finger scroll
-		mouse.wheel(-y * SCROLL_SPEED)
-	else
-		-- pointer movement
-		mouse.moveraw(x * SPEED, y * SPEED)
-	end
+    mouse.moveraw(x * SPEED, y * SPEED)
 end
 
 actions.double = function ()
-	mouse.double("left");
+	mouse.double("left")
 end
 
 actions.left = function ()
-	mouse.click("left");
+	mouse.click("left")
 end
 
 actions.right = function ()
-	mouse.click("right");
+	mouse.click("right")
 end
 
 
@@ -168,14 +161,3 @@ actions.pg_down = function()
 	-- actions.switch();
 	keyboard.stroke("pgdown");
 end
-
-
-
-
-
-
-
-
-
-
-
