@@ -59,50 +59,48 @@ actions.rewind = function()
 	keyboard.stroke("left");
 end
 
-
-
 dragging = false;
-
 local mouse = libs.mouse;
 
-function update (r)
-	--server.update({id = "touch", text = r });
-end
-
-actions.down = function ()
-	update("down");
-end
-
-actions.up = function ()
-	update("up");
-end
+local SPEED = 2.5
+local SCROLL_SPEED = 0.15
 
 actions.tap = function ()
-	update("tap");
-	if (dragging) then
-		dragging = false;
+	if dragging then
 		mouse.dragend();
 		mouse.up();
+		dragging = false;
 	else
 		mouse.click("left");
 	end
 end
 
-actions.double = function ()
-	update("double");
-	mouse.double("left");
-end
-
 actions.hold = function ()
-	update("hold");
-	mouse.down();
 	mouse.dragbegin();
+	mouse.down();
 	dragging = true;
 end
 
-actions.delta = function  (id, x, y)
-	update("delta: " .. x .. " " .. y);
-	mouse.moveraw(x, y);
+actions.up = function ()
+	if dragging then
+		mouse.dragend();
+		mouse.up();
+		dragging = false;
+	end
+end
+
+actions.delta = function (id, x, y)
+	if id == 2 then
+		-- two-finger scroll
+		mouse.wheel(-y * SCROLL_SPEED)
+	else
+		-- pointer movement
+		mouse.moveraw(x * SPEED, y * SPEED)
+	end
+end
+
+actions.double = function ()
+	mouse.double("left");
 end
 
 actions.left = function ()
@@ -112,6 +110,7 @@ end
 actions.right = function ()
 	mouse.click("right");
 end
+
 
 --@help Launch Home site
 actions.launch_home = function ()
@@ -169,6 +168,7 @@ actions.pg_down = function()
 	-- actions.switch();
 	keyboard.stroke("pgdown");
 end
+
 
 
 
