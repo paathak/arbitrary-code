@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Entertainment Hub</title>
+  <style>
+    :root {
+      --bg-1: #07050f;
+      --bg-2: #140c23;
+      --bg-3: #2b1550;
+      --surface: rgba(255, 255, 255, 0.065);
+      --surface-strong: rgba(255, 255, 255, 0.12);
+      --surface-hover: rgba(255, 255, 255, 0.18);
+      --border: rgba(255, 255, 255, 0.12);
+      --border-strong: rgba(255, 255, 255, 0.22);
+      --text: #f7f7fb;
+      --muted: #a7adba;
+      --danger: #fb7185;
+      --success: #34d399;
+      --warning: #fbbf24;
+
+      --apps: #ff007f;
+      --movies-shows: #3b82f6;
+      --sports: #10b981;
+      --other: #a855f7;
+
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 10px;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.38);
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 10%, rgba(255, 0, 127, 0.22), transparent 32rem),
+        radial-gradient(circle at 85% 12%, rgba(59, 130, 246, 0.18), transparent 30rem),
+        radial-gradient(circle at 55% 95%, rgba(168, 85, 247, 0.18), transparent 34rem),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2) 46%, var(--bg-3));
+      background-attachment: fixed;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 46px 46px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.65), transparent 78%);
+    }
+
+    body.drawer-open {
+      overflow: hidden;
+    }
+
+    .shell {
+      width: min(1460px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 32px 0 72px;
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+
+    .hero {
+      min-width: 0;
+    }
+
+    .eyebrow {
+      color: var(--muted);
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: clamp(2.15rem, 5vw, 4.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      background: linear-gradient(100deg, #fff, #c9d4ff 48%, #f7b8dc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-wrap: balance;
+    }
+
+    .top-panel {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .clock-card {
+      min-width: 150px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 11px 16px;
+      background: rgba(255,255,255,0.075);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+      text-align: center;
+    }
+
+    .clock {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .date {
+      color: var(--muted);
+      font-size: 0.72rem;
+      margin-top: 1px;
+    }
+
+    .btn,
+    .icon-btn,
+    .file-btn {
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.09);
+      border-radius: 999px;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 750;
+      transition: transform 220ms var(--ease), background 220ms var(--ease), border-color 220ms var(--ease), box-shadow 220ms var(--ease);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .btn,
+    .file-btn {
+      min-height: 44px;
+      padding: 0 17px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      font-size: 1rem;
+    }
+
+    .btn:hover,
+    .icon-btn:hover,
+    .file-btn:hover {
+      background: rgba(255,255,255,0.18);
+      border-color: var(--border-strong);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.24);
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, rgba(59,130,246,0.9), rgba(168,85,247,0.9));
+      border-color: rgba(255,255,255,0.16);
+    }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items: center;
+      margin: 28px 0 36px;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,0.055);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+
+    .search-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-left: 10px;
+      min-width: 0;
+    }
+
+    .search-wrap span {
+      color: var(--muted);
+    }
+
+    input,
+    select {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: rgba(255,255,255,0.075);
+      color: var(--text);
+      font: inherit;
+      outline: none;
+      min-height: 44px;
+      padding: 0 13px;
+      transition: border-color 160ms ease, background 160ms ease, box-shadow 160ms ease;
+    }
+
+    input::placeholder {
+      color: rgba(167,173,186,0.75);
+    }
+
+    input:focus,
+    select:focus {
+      border-color: rgba(59,130,246,0.9);
+      box-shadow: 0 0 0 4px rgba(59,130,246,0.16);
+      background: rgba(255,255,255,0.1);
+    }
+
+    select option {
+      background: #151026;
+      color: #fff;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .chip {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.07);
+      color: var(--muted);
+      border-radius: 999px;
+      min-height: 38px;
+      padding: 0 13px;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 750;
+      transition: 180ms ease;
+    }
+
+    .chip:hover,
+    .chip.active {
+      color: var(--text);
+      background: rgba(255,255,255,0.16);
+      border-color: var(--border-strong);
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 44px;
+    }
+
+    .category-section {
+      --accent: var(--other);
+      display: none;
+    }
+
+    .category-section.visible {
+      display: block;
+      animation: rise 360ms var(--ease) both;
+    }
+
+    #apps-sec { --accent: var(--apps); }
+    #movies-shows-sec { --accent: var(--movies-shows); }
+    #sports-sec { --accent: var(--sports); }
+    #other-sec { --accent: var(--other); }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .category-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: clamp(1.15rem, 2vw, 1.45rem);
+      letter-spacing: -0.03em;
+    }
+
+    .category-title::before {
+      content: "";
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 18px var(--accent);
+    }
+
+    .count-pill {
+      color: var(--muted);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.055);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.78rem;
+      font-weight: 750;
+    }
+
+    /* Core fix 1: Prevent horizontal stretching on standard sections */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 250px));
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    #apps-grid {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    #apps-grid:has(.card:nth-child(1):last-child) {
+      grid-template-columns: 1fr;
+    }
+
+    #apps-grid:has(.card:nth-child(2):last-child) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    #apps-grid:has(.card:nth-child(3):last-child) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    #apps-grid:has(.card:nth-child(4):last-child) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    #apps-grid:has(.card:nth-child(5):last-child) {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .card {
+      position: relative;
+      width: 100%;
+      min-width: 0;
+      min-height: 145px;
+      height: 100%;
+      aspect-ratio: auto;
+      overflow: hidden;
+      isolation: isolate;
+      display: flex;
+      align-items: flex-end;
+      text-decoration: none;
+      color: inherit;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      
+      /* Core fix 2: Change cover to contain to prevent zoomed-in images */
+      background: rgba(255, 255, 255, 0.03);
+      background-image: var(--image, none);
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+      transition: transform 260ms var(--ease), border-color 260ms var(--ease), box-shadow 260ms var(--ease);
+    }
+
+    /* Gradient overlay adjustments to allow structural containment visibility */
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(to top, rgba(0,0,0,0.92), rgba(0,0,0,0.35) 65%, rgba(0,0,0,0.1)),
+        radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--accent), transparent 75%), transparent 60%);
+      opacity: 0.95;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.16), transparent 45%);
+      opacity: 0;
+      transition: opacity 260ms ease;
+    }
+
+    .card:hover,
+    .card:focus-visible {
+      transform: translateY(-7px) scale(1.012);
+      border-color: color-mix(in srgb, var(--accent), white 18%);
+      box-shadow: 0 24px 60px color-mix(in srgb, var(--accent), transparent 74%);
+      outline: none;
+    }
+
+    .card:hover::after,
+    .card:focus-visible::after {
+      opacity: 1;
+    }
+
+    .card-content {
+      width: 100%;
+      padding: 18px;
+      min-width: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    #apps-grid .card-content {
+      padding: 14px;
+    }
+
+    .card-title {
+      font-size: 1.08rem;
+      font-weight: 850;
+      letter-spacing: -0.035em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.75);
+    }
+
+    #apps-grid .card-title {
+      font-size: 0.98rem;
+    }
+
+    .card-type {
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 0.74rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    .empty {
+      display: none;
+      border: 1px dashed var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      color: var(--muted);
+      background: rgba(255,255,255,0.045);
+    }
+
+    .empty.visible {
+      display: block;
+    }
+
+    .scrim {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.48);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 300ms ease;
+      z-index: 80;
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+    }
+
+    .scrim.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: min(460px, 100%);
+      height: 100dvh;
+      transform: translateX(104%);
+      transition: transform 360ms var(--ease);
+      background: rgba(12, 9, 24, 0.86);
+      border-left: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(34px);
+      -webkit-backdrop-filter: blur(34px);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .drawer.open {
+      transform: translateX(0);
+    }
+
+    .drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 22px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .drawer-header h3 {
+      font-size: 1.2rem;
+      letter-spacing: -0.03em;
+    }
+
+    .drawer-body {
+      padding: 20px 22px 24px;
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .form-card,
+    .manage-card {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.055);
+      border-radius: var(--radius-md);
+      padding: 16px;
+    }
+
+    .form-card {
+      display: grid;
+      gap: 14px;
+    }
+
+    .form-row {
+      display: grid;
+      gap: 7px;
+    }
+
+    label {
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 850;
+      font-size: 0.72rem;
+    }
+
+    .drawer-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 2px;
+    }
+
+    .drawer-actions .btn {
+      border-radius: var(--radius-sm);
+      width: 100%;
+    }
+
+    .danger-btn {
+      color: #fff;
+      background: rgba(244, 63, 94, 0.15);
+      border-color: rgba(244, 63, 94, 0.32);
+    }
+
+    .manage-card h4 {
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .manage-list {
+      display: grid;
+      gap: 10px;
+      max-height: 45vh;
+      overflow: auto;
+      padding-right: 4px;
+    }
+
+    .manage-list::-webkit-scrollbar,
+    .drawer-body::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    .manage-list::-webkit-scrollbar-thumb,
+    .drawer-body::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.16);
+      border-radius: 999px;
+    }
+
+    .manage-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.055);
+      padding: 11px;
+    }
+
+    .manage-item-title {
+      font-weight: 850;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 230px;
+    }
+
+    .manage-item-meta {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 0.73rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 800;
+    }
+
+    .manage-buttons {
+      display: flex;
+      gap: 6px;
+    }
+
+    .mini-btn {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.08);
+      color: var(--text);
+      border-radius: 10px;
+      height: 34px;
+      padding: 0 9px;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 800;
+    }
+
+    .mini-btn:hover {
+      background: rgba(255,255,255,0.16);
+    }
+
+    .mini-btn.remove {
+      color: var(--danger);
+    }
+
+    .utility-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .utility-actions .btn,
+    .utility-actions .file-btn {
+      border-radius: var(--radius-sm);
+      width: 100%;
+      font-size: 0.92rem;
+    }
+
+    #importFile {
+      display: none;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translate(-50%, 140%);
+      min-width: min(420px, calc(100% - 32px));
+      z-index: 140;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(15,12,27,0.86);
+      color: var(--text);
+      box-shadow: var(--shadow);
+      padding: 13px 18px;
+      text-align: center;
+      font-weight: 750;
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      transition: transform 260ms var(--ease);
+    }
+
+    .toast.show {
+      transform: translate(-50%, 0);
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 1ms !important;
+        transition-duration: 1ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    @media (max-width: 900px) {
+      header,
+      .toolbar {
+        grid-template-columns: 1fr;
+      }
+
+      .top-panel,
+      .filters {
+        justify-content: flex-start;
+      }
+
+      .toolbar {
+        padding: 12px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .shell {
+        width: min(100% - 22px, 1460px);
+        padding-top: 22px;
+      }
+
+      .top-panel {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .clock-card,
+      .top-panel .btn {
+        width: 100%;
+      }
+
+      .clock-card {
+        grid-column: 1 / -1;
+        order: -1;
+      }
+
+      .grid,
+      #apps-grid,
+      #apps-grid:has(.card:nth-child(3):last-child),
+      #apps-grid:has(.card:nth-child(4):last-child),
+      #apps-grid:has(.card:nth-child(5):last-child) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      #apps-grid:has(.card:nth-child(1):last-child) {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        min-height: 118px;
+        height: auto;
+      }
+
+      .card-content,
+      #apps-grid .card-content {
+        padding: 12px;
+      }
+
+      .drawer-actions,
+      .utility-actions {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <div class="hero">
+        <div class="eyebrow">Pathak Home</div>
+        <h1>Entertainment Hub</h1>
+      </div>
+
+      <div class="top-panel">
+        <button class="btn" id="configureBtn" type="button">âš™ï¸ Configure</button>
+        <button class="btn primary" id="shuffleBtn" type="button">ðŸ”€ Shuffle Play</button>
+        <div class="clock-card" aria-live="polite">
+          <div class="clock" id="clock">00:00</div>
+          <div class="date" id="dateText">Today</div>
+        </div>
+      </div>
+    </header>
+
+    <section class="toolbar" aria-label="Dashboard controls">
+      <div class="search-wrap">
+        <span aria-hidden="true">ðŸ”Ž</span>
+        <input id="searchInput" type="search" placeholder="Search apps, shows, sports..." autocomplete="off" />
+      </div>
+      <div class="filters" id="filters"></div>
+    </section>
+
+    <main id="dashboard">
+      <section class="category-section" id="apps-sec" data-category="apps">
+        <div class="section-head">
+          <h2 class="category-title">Apps</h2>
+          <span class="count-pill" id="apps-count">0 items</span>
+        </div>
+        <div class="grid" id="apps-grid"></div>
+        <div class="empty" id="apps-empty">No apps match your search.</div>
+      </section>
+
+      <section class="category-section" id="movies-shows-sec" data-category="movies-shows">
+        <div class="section-head">
+          <h2 class="category-title">Movies & Shows</h2>
+          <span class="count-pill" id="movies-shows-count">0 items</span>
+        </div>
+        <div class="grid" id="movies-shows-grid"></div>
+        <div class="empty" id="movies-shows-empty">No movies or shows yet. Add your favorites from Configure.</div>
+      </section>
+
+      <section class="category-section" id="sports-sec" data-category="sports">
+        <div class="section-head">
+          <h2 class="category-title">Sports</h2>
+          <span class="count-pill" id="sports-count">0 items</span>
+        </div>
+        <div class="grid" id="sports-grid"></div>
+        <div class="empty" id="sports-empty">No sports shortcuts yet.</div>
+      </section>
+
+      <section class="category-section" id="other-sec" data-category="other">
+        <div class="section-head">
+          <h2 class="category-title">Others</h2>
+          <span class="count-pill" id="other-count">0 items</span>
+        </div>
+        <div class="grid" id="other-grid"></div>
+        <div class="empty" id="other-empty">No other shortcuts yet.</div>
+      </section>
+    </main>
+  </div>
+
+  <div class="scrim" id="scrim"></div>
+
+  <aside class="drawer" id="drawer" aria-hidden="true" aria-label="Dashboard settings">
+    <div class="drawer-header">
+      <div>
+        <h3>Dashboard Settings</h3>
+        <div class="date">Add, edit, export, or reset shortcuts</div>
+      </div>
+      <button class="icon-btn" id="closeDrawerBtn" type="button" aria-label="Close settings">âœ•</button>
+    </div>
+
+    <div class="drawer-body">
+      <form class="form-card" id="itemForm">
+        <input type="hidden" id="itemId" />
+
+        <div class="form-row">
+          <label for="itemCategory">Category</label>
+          <select id="itemCategory">
+            <option value="apps">Apps</option>
+            <option value="movies-shows">Movies & Shows</option>
+            <option value="sports">Sports</option>
+            <option value="other">Others</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label for="itemTitle">Title</label>
+          <input type="text" id="itemTitle" placeholder="e.g., ESPN or Netflix" maxlength="60" required />
+        </div>
+
+        <div class="form-row">
+          <label for="itemUrl">Stream URL</label>
+          <input type="url" id="itemUrl" placeholder="https://..." required />
+        </div>
+
+        <div class="form-row">
+          <label for="itemImage">Background Image URL</label>
+          <input type="url" id="itemImage" placeholder="https://... or leave blank" />
+        </div>
+
+        <div class="drawer-actions">
+          <button class="btn primary" id="saveBtn" type="submit">âž• Add Shortcut</button>
+          <button class="btn" id="clearFormBtn" type="button">Clear</button>
+        </div>
+      </form>
+
+      <div class="utility-actions">
+        <button class="btn" id="exportBtn" type="button">â¬‡ï¸ Export</button>
+        <label class="file-btn" for="importFile">â¬†ï¸ Import</label>
+        <input id="importFile" type="file" accept="application/json,.json" />
+        <button class="btn danger-btn" id="resetBtn" type="button">Reset Defaults</button>
+      </div>
+
+      <section class="manage-card">
+        <h4>Manage Existing Items</h4>
+        <div class="manage-list" id="itemsManagerList"></div>
+      </section>
+    </div>
+  </aside>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const STORAGE_KEY = "hubDashboardData.v2";
+
+    const categories = [
+      { id: "all", label: "All" },
+      { id: "apps", label: "Apps" },
+      { id: "movies-shows", label: "Movies & Shows" },
+      { id: "sports", label: "Sports" },
+      { id: "other", label: "Others" }
+    ];
+
+    const defaultDashboardData = [
+      { id: 1, category: "apps", title: "Hotstar", url: "https://www.hotstar.com/in/home", img: "https://img.hotstar.com/image/upload/v1737554969/web-assets/prod/images/rebrand/logo.png" },
+      { id: 2, category: "apps", title: "Sony Liv", url: "https://www.sonyliv.com/", img: "https://images.slivcdn.com/UI_icons/sonyliv_new_revised_header_logo.png?h=100&w=100&q=high" },
+      { id: 3, category: "apps", title: "Watcho", url: "https://www.watcho.com/", img: "https://d2ivesio5kogrp.cloudfront.net/static/watcho/images/logo.svg" },
+      { id: 4, category: "apps", title: "YouTube", url: "https://www.youtube.com/", img: "https://assets.turbologo.com/blog/en/2019/10/19084944/youtube-logo-illustration-958x575.jpg" },
+      { id: 5, category: "apps", title: "Netflix", url: "https://www.netflix.com/in/", img: "https://static.vecteezy.com/system/resources/previews/020/190/686/original/netflix-logo-netflix-icon-free-free-vector.jpg" },
+      { id: 6, category: "apps", title: "ZEE5", url: "https://www.zee5.com/", img: "https://www.zee5.com/images/ZEE5_logo.svg?ver=6.2.1" }
+    ];
+
+    let dashboardData = loadData();
+    let activeFilter = "all";
+
+    const els = {
+      drawer: document.getElementById("drawer"),
+      scrim: document.getElementById("scrim"),
+      configureBtn: document.getElementById("configureBtn"),
+      closeDrawerBtn: document.getElementById("closeDrawerBtn"),
+      shuffleBtn: document.getElementById("shuffleBtn"),
+      filters: document.getElementById("filters"),
+      searchInput: document.getElementById("searchInput"),
+      itemForm: document.getElementById("itemForm"),
+      itemId: document.getElementById("itemId"),
+      itemCategory: document.getElementById("itemCategory"),
+      itemTitle: document.getElementById("itemTitle"),
+      itemUrl: document.getElementById("itemUrl"),
+      itemImage: document.getElementById("itemImage"),
+      saveBtn: document.getElementById("saveBtn"),
+      clearFormBtn: document.getElementById("clearFormBtn"),
+      exportBtn: document.getElementById("exportBtn"),
+      importFile: document.getElementById("importFile"),
+      resetBtn: document.getElementById("resetBtn"),
+      managerList: document.getElementById("itemsManagerList"),
+      clock: document.getElementById("clock"),
+      dateText: document.getElementById("dateText"),
+      toast: document.getElementById("toast")
+    };
+
+    function loadData() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+        if (Array.isArray(saved)) return saved;
+      } catch {
+        // Fall back to defaults.
+      }
+
+      try {
+        const legacy = JSON.parse(localStorage.getItem("hubDashboardData"));
+        if (Array.isArray(legacy)) {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(legacy));
+          return legacy;
+        }
+      } catch {
+        // Fall back to defaults.
+      }
+
+      return structuredClone(defaultDashboardData);
+    }
+
+    function saveData() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(dashboardData));
+    }
+
+    function createEl(tag, className, text) {
+      const el = document.createElement(tag);
+      if (className) el.className = className;
+      if (text !== undefined) el.textContent = text;
+      return el;
+    }
+
+    function isValidUrl(value) {
+      try {
+        const url = new URL(value);
+        return url.protocol === "http:" || url.protocol === "https:";
+      } catch {
+        return false;
+      }
+    }
+
+    function getCategoryLabel(categoryId) {
+      return categories.find(cat => cat.id === categoryId)?.label || "Other";
+    }
+
+    function getFilteredData() {
+      const query = els.searchInput.value.trim().toLowerCase();
+
+      return dashboardData.filter(item => {
+        const matchesCategory = activeFilter === "all" || item.category === activeFilter;
+        const haystack = `${item.title} ${item.category} ${item.url}`.toLowerCase();
+        const matchesSearch = !query || haystack.includes(query);
+        return matchesCategory && matchesSearch;
+      });
+    }
+
+    function renderFilters() {
+      els.filters.replaceChildren();
+
+      categories.forEach(category => {
+        const button = createEl("button", "chip", category.label);
+        button.type = "button";
+        button.classList.toggle("active", activeFilter === category.id);
+        button.addEventListener("click", () => {
+          activeFilter = category.id;
+          render();
+        });
+        els.filters.appendChild(button);
+      });
+    }
+
+    function renderCards() {
+      const filteredData = getFilteredData();
+
+      categories
+        .filter(category => category.id !== "all")
+        .forEach(category => {
+          const section = document.getElementById(`${category.id}-sec`);
+          const grid = document.getElementById(`${category.id}-grid`);
+          const count = document.getElementById(`${category.id}-count`);
+          const empty = document.getElementById(`${category.id}-empty`);
+          const items = filteredData.filter(item => item.category === category.id);
+
+          grid.replaceChildren();
+          section.classList.toggle("visible", activeFilter === "all" ? items.length > 0 || dashboardData.some(item => item.category === category.id) : category.id === activeFilter);
+          count.textContent = `${items.length} ${items.length === 1 ? "item" : "items"}`;
+          empty.classList.toggle("visible", items.length === 0);
+
+          items.forEach(item => {
+            const card = document.createElement("a");
+            card.className = "card";
+            card.href = item.url;
+            card.target = "_blank";
+            card.rel = "noopener noreferrer";
+            card.setAttribute("aria-label", `Open ${item.title}`);
+            if (item.img) card.style.setProperty("--image", `url("${item.img.replaceAll('"', "%22")}")`);
+
+            const content = createEl("div", "card-content");
+            content.appendChild(createEl("div", "card-title", item.title));
+            content.appendChild(createEl("div", "card-type", getCategoryLabel(item.category)));
+            card.appendChild(content);
+            grid.appendChild(card);
+          });
+        });
+    }
+
+    function renderManager() {
+      els.managerList.replaceChildren();
+
+      if (!dashboardData.length) {
+        els.managerList.appendChild(createEl("div", "empty visible", "No shortcuts yet. Add one above."));
+        return;
+      }
+
+      [...dashboardData]
+        .sort((a, b) => a.category.localeCompare(b.category) || a.title.localeCompare(b.title))
+        .forEach(item => {
+          const row = createEl("div", "manage-item");
+
+          const info = createEl("div");
+          info.appendChild(createEl("div", "manage-item-title", item.title));
+          info.appendChild(createEl("div", "manage-item-meta", getCategoryLabel(item.category)));
+
+          const buttons = createEl("div", "manage-buttons");
+
+          const editBtn = createEl("button", "mini-btn", "Edit");
+          editBtn.type = "button";
+          editBtn.addEventListener("click", () => editItem(item.id));
+
+          const removeBtn = createEl("button", "mini-btn remove", "Remove");
+          removeBtn.type = "button";
+          removeBtn.addEventListener("click", () => deleteItem(item.id));
+
+          buttons.append(editBtn, removeBtn);
+          row.append(info, buttons);
+          els.managerList.appendChild(row);
+        });
+    }
+
+    function render() {
+      renderFilters();
+      renderCards();
+      renderManager();
+    }
+
+    function showToast(message) {
+      els.toast.textContent = message;
+      els.toast.classList.add("show");
+      window.clearTimeout(showToast.timer);
+      showToast.timer = window.setTimeout(() => els.toast.classList.remove("show"), 2400);
+    }
+
+    function openDrawer() {
+      els.drawer.classList.add("open");
+      els.scrim.classList.add("open");
+      els.drawer.setAttribute("aria-hidden", "false");
+      document.body.classList.add("drawer-open");
+      window.setTimeout(() => els.itemTitle.focus(), 80);
+    }
+
+    function closeDrawer() {
+      els.drawer.classList.remove("open");
+      els.scrim.classList.remove("open");
+      els.drawer.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("drawer-open");
+      els.configureBtn.focus();
+    }
+
+    function clearForm() {
+      els.itemForm.reset();
+      els.itemId.value = "";
+      els.saveBtn.textContent = "âž• Add Shortcut";
+      els.itemCategory.value = "apps";
+    }
+
+    function upsertItem(event) {
+      event.preventDefault();
+
+      const category = els.itemCategory.value;
+      const title = els.itemTitle.value.trim();
+      const url = els.itemUrl.value.trim();
+      const img = els.itemImage.value.trim();
+
+      if (!title || !url) {
+        showToast("Please add both title and URL.");
+        return;
+      }
+
+      if (!isValidUrl(url)) {
+        showToast("Please enter a valid http or https URL.");
+        return;
+      }
+
+      if (img && !isValidUrl(img)) {
+        showToast("Image URL must start with http or https.");
+        return;
+      }
+
+      const editingId = Number(els.itemId.value);
+
+      if (editingId) {
+        dashboardData = dashboardData.map(item =>
+          item.id === editingId ? { ...item, category, title, url, img: img || null } : item
+        );
+        showToast("Shortcut updated.");
+      } else {
+        dashboardData.push({
+          id: Date.now(),
+          category,
+          title,
+          url,
+          img: img || null
+        });
+        showToast("Shortcut added.");
+      }
+
+      saveData();
+      clearForm();
+      render();
+    }
+
+    function editItem(id) {
+      const item = dashboardData.find(entry => entry.id === id);
+      if (!item) return;
+
+      els.itemId.value = item.id;
+      els.itemCategory.value = item.category;
+      els.itemTitle.value = item.title;
+      els.itemUrl.value = item.url;
+      els.itemImage.value = item.img || "";
+      els.saveBtn.textContent = "ðŸ’¾ Save Changes";
+      els.itemTitle.focus();
+    }
+
+    function deleteItem(id) {
+      const item = dashboardData.find(entry => entry.id === id);
+      if (!item) return;
+
+      const ok = confirm(`Remove "${item.title}" from your dashboard?`);
+      if (!ok) return;
+
+      dashboardData = dashboardData.filter(entry => entry.id !== id);
+      saveData();
+      render();
+      showToast("Shortcut removed.");
+    }
+
+    function shufflePlay() {
+      const pool = getFilteredData();
+
+      if (!pool.length) {
+        showToast("No matching shortcuts to shuffle.");
+        return;
+      }
+
+      const random = pool[Math.floor(Math.random() * pool.length)];
+      window.open(random.url, "_blank", "noopener,noreferrer");
+      showToast(`Opening ${random.title}...`);
+    }
+
+    function exportData() {
+      const blob = new Blob([JSON.stringify(dashboardData, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const anchor = document.createElement("a");
+      anchor.href = url;
+      anchor.download = `entertainment-hub-${new Date().toISOString().slice(0, 10)}.json`;
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+      URL.revokeObjectURL(url);
+      showToast("Export downloaded.");
+    }
+
+    function importData(event) {
+      const file = event.target.files?.[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        try {
+          const parsed = JSON.parse(reader.result);
+          if (!Array.isArray(parsed)) throw new Error("Expected an array.");
+
+          const sanitized = parsed
+            .filter(item => item && item.title && item.url && isValidUrl(item.url))
+            .map(item => ({
+              id: Number(item.id) || Date.now() + Math.floor(Math.random() * 100000),
+              category: ["apps", "movies-shows", "sports", "other"].includes(item.category) ? item.category : "other",
+              title: String(item.title).slice(0, 60),
+              url: String(item.url),
+              img: item.img && isValidUrl(item.img) ? String(item.img) : null
+            }));
+
+          dashboardData = sanitized;
+          saveData();
+          clearForm();
+          render();
+          showToast(`Imported ${sanitized.length} shortcuts.`);
+        } catch {
+          showToast("Could not import that JSON file.");
+        } finally {
+          els.importFile.value = "";
+        }
+      };
+
+      reader.readAsText(file);
+    }
+
+    function resetDefaults() {
+      const ok = confirm("Reset dashboard to defaults? This will replace your current shortcuts.");
+      if (!ok) return;
+
+      dashboardData = structuredClone(defaultDashboardData);
+      saveData();
+      clearForm();
+      render();
+      showToast("Defaults restored.");
+    }
+
+    function updateClock() {
+      const now = new Date();
+
+      els.clock.textContent = now.toLocaleTimeString([], {
+        hour: "numeric",
+        minute: "2-digit"
+      });
+
+      els.dateText.textContent = now.toLocaleDateString([], {
+        weekday: "short",
+        month: "short",
+        day: "numeric"
+      });
+    }
+
+    els.configureBtn.addEventListener("click", openDrawer);
+    els.closeDrawerBtn.addEventListener("click", closeDrawer);
+    els.scrim.addEventListener("click", closeDrawer);
+    els.shuffleBtn.addEventListener("click", shufflePlay);
+    els.searchInput.addEventListener("input", render);
+    els.itemForm.addEventListener("submit", upsertItem);
+    els.clearFormBtn.addEventListener("click", clearForm);
+    els.exportBtn.addEventListener("click", exportData);
+    els.importFile.addEventListener("change", importData);
+    els.resetBtn.addEventListener("click", resetDefaults);
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && els.drawer.classList.contains("open")) closeDrawer();
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        els.searchInput.focus();
+      }
+    });
+
+    updateClock();
+    setInterval(updateClock, 1000);
+    render();
+  </script>
+</body>
+</html>
