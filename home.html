@@ -1187,7 +1187,12 @@ if(item.category!='apps'){
     }
 
     function shufflePlay() {
-      const pool = getFilteredData();
+      let pool = getFilteredData();
+
+      pool = pool.filter(item => {
+        const matchesCategory = (item.category != "apps") || (activeFilter === "apps" && item.category === "apps") ;
+        return matchesCategory;
+      });
 
       if (!pool.length) {
         showToast("No matching shortcuts to shuffle.");
