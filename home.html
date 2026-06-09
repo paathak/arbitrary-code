@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Entertainment Hub</title>
+  <title>Home Player</title>
   <style>
     :root {
       --bg-1: #07050f;
@@ -101,7 +101,7 @@
 
     h1 {
       font-size: clamp(2.15rem, 5vw, 4.5rem);
-      line-height: 0.95;
+      line-height: 1.15;
       letter-spacing: -0.06em;
       background: linear-gradient(100deg, #fff, #c9d4ff 48%, #f7b8dc);
       -webkit-background-clip: text;
@@ -779,13 +779,12 @@
   <div class="shell">
     <header>
       <div class="hero">
-        <div class="eyebrow">Pathak Home</div>
-        <h1>Entertainment Hub</h1>
+        <h1>Home Player</h1>
       </div>
 
       <div class="top-panel">
-        <button class="btn" id="configureBtn" type="button">âš™ï¸ Configure</button>
-        <button class="btn primary" id="shuffleBtn" type="button">ðŸ”€ Shuffle Play</button>
+        <button class="btn" id="configureBtn" type="button">Configure</button>
+        <button class="btn primary" id="shuffleBtn" type="button">Shuffle Play</button>
         <div class="clock-card" aria-live="polite">
           <div class="clock" id="clock">00:00</div>
           <div class="date" id="dateText">Today</div>
@@ -795,7 +794,7 @@
 
     <section class="toolbar" aria-label="Dashboard controls">
       <div class="search-wrap">
-        <span aria-hidden="true">ðŸ”Ž</span>
+        <span aria-hidden="true"></span>
         <input id="searchInput" type="search" placeholder="Search apps, shows, sports..." autocomplete="off" />
       </div>
       <div class="filters" id="filters"></div>
@@ -848,7 +847,7 @@
         <h3>Dashboard Settings</h3>
         <div class="date">Add, edit, export, or reset shortcuts</div>
       </div>
-      <button class="icon-btn" id="closeDrawerBtn" type="button" aria-label="Close settings">âœ•</button>
+      <button class="icon-btn" id="closeDrawerBtn" type="button" aria-label="Close settings">×</button>
     </div>
 
     <div class="drawer-body">
@@ -881,14 +880,14 @@
         </div>
 
         <div class="drawer-actions">
-          <button class="btn primary" id="saveBtn" type="submit">âž• Add Shortcut</button>
+          <button class="btn primary" id="saveBtn" type="submit">Add Shortcut</button>
           <button class="btn" id="clearFormBtn" type="button">Clear</button>
         </div>
       </form>
 
       <div class="utility-actions">
-        <button class="btn" id="exportBtn" type="button">â¬‡ï¸ Export</button>
-        <label class="file-btn" for="importFile">â¬†ï¸ Import</label>
+        <button class="btn" id="exportBtn" type="button">Export</button>
+        <label class="file-btn" for="importFile">Import</label>
         <input id="importFile" type="file" accept="application/json,.json" />
         <button class="btn danger-btn" id="resetBtn" type="button">Reset Defaults</button>
       </div>
