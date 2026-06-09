@@ -972,7 +972,7 @@ background-size: 114px 114px;
     function isValidUrl(value) {
       try {
         const url = new URL(value);
-        return url.protocol === "http:" || url.protocol === "https:";
+        return url.protocol === "http:" || url.protocol === "https:" || url.protocol === "file:";
       } catch {
         return false;
       }
@@ -1128,12 +1128,12 @@ if(item.category!='apps'){
       }
 
       if (!isValidUrl(url)) {
-        showToast("Please enter a valid http or https URL.");
+        showToast("Please enter a valid file, http or https URL.");
         return;
       }
 
       if (img && !isValidUrl(img)) {
-        showToast("Image URL must start with http or https.");
+        showToast("Image URL must start with file, http or https.");
         return;
       }
 
