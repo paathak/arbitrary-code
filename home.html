@@ -6,9 +6,14 @@
   <title>Home Player</title>
   <style>
     :root {
+      /* Deep Purple Base Theme */
       --bg-1: #07050f;
       --bg-2: #140c23;
       --bg-3: #2b1550;
+      --radial-1: rgba(255, 0, 127, 0.22);
+      --radial-2: rgba(59, 130, 246, 0.18);
+      --radial-3: rgba(168, 85, 247, 0.18);
+      
       --surface: rgba(255, 255, 255, 0.065);
       --surface-strong: rgba(255, 255, 255, 0.12);
       --surface-hover: rgba(255, 255, 255, 0.18);
@@ -33,6 +38,33 @@
       --ease: cubic-bezier(0.16, 1, 0.3, 1);
     }
 
+    /* Theme: Pure OLED Black */
+    body.theme-oled {
+      --bg-1: #000000;
+      --bg-2: #050505;
+      --bg-3: #0a0a0a;
+      --radial-1: transparent;
+      --radial-2: transparent;
+      --radial-3: transparent;
+      --surface: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Theme: Cyberpunk Neon */
+    body.theme-cyberpunk {
+      --bg-1: #0a0f1d;
+      --bg-2: #070a14;
+      --bg-3: #1a0b2e;
+      --radial-1: rgba(0, 255, 204, 0.15);
+      --radial-2: rgba(255, 0, 128, 0.15);
+      --radial-3: rgba(138, 43, 226, 0.15);
+      --favorites: #00ffcc;
+      --apps: #ff0080;
+      --movies-shows: #8a2be2;
+      --sports: #39ff14;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -48,12 +80,13 @@
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at 15% 10%, rgba(255, 0, 127, 0.22), transparent 32rem),
-        radial-gradient(circle at 85% 12%, rgba(59, 130, 246, 0.18), transparent 30rem),
-        radial-gradient(circle at 55% 95%, rgba(168, 85, 247, 0.18), transparent 34rem),
+        radial-gradient(circle at 15% 10%, var(--radial-1), transparent 32rem),
+        radial-gradient(circle at 85% 12%, var(--radial-2), transparent 30rem),
+        radial-gradient(circle at 55% 95%, var(--radial-3), transparent 34rem),
         linear-gradient(135deg, var(--bg-1), var(--bg-2) 46%, var(--bg-3));
       background-attachment: fixed;
       overflow-x: hidden;
+      transition: background 0.4s var(--ease);
     }
 
     body::before {
@@ -80,7 +113,6 @@
       z-index: 1;
     }
 
-    /* Core Fix 1: Compact Single Top Navbar Row Layout */
     header {
       display: grid;
       grid-template-columns: auto 1fr auto auto;
@@ -109,6 +141,50 @@
       width: 100%;
       max-width: 480px;
       margin-left: 8px;
+    }
+
+    /* Highly Custom Sleek Search Input Design */
+    input,
+    select {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      font: inherit;
+      outline: none;
+      min-height: 40px;
+      padding: 0 16px;
+      transition: border-color 200ms var(--ease), background 200ms var(--ease), box-shadow 200ms var(--ease);
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    input[type="search"] {
+      padding: 0 16px 0 38px; 
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(167,173,186,0.5)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>');
+      background-repeat: no-repeat;
+      background-position: 14px center;
+    }
+
+    input::placeholder {
+      color: rgba(167, 173, 186, 0.4);
+      font-weight: 500;
+    }
+
+    input:focus,
+    select:focus {
+      background: rgba(255, 255, 255, 0.09);
+      border-color: rgba(59, 130, 246, 0.8);
+      box-shadow: 
+        inset 0 1px 2px rgba(0, 0, 0, 0.2),
+        0 0 16px rgba(59, 130, 246, 0.25);
+    }
+
+    input[type="search"]::-webkit-search-decoration,
+    input[type="search"]::-webkit-search-cancel-button,
+    input[type="search"]::-webkit-search-results-button,
+    input[type="search"]::-webkit-search-results-decoration {
+      display: none;
     }
 
     .top-panel {
@@ -291,7 +367,7 @@
     #apps-grid .card {
       border-radius: 50%;
       min-height: 114px;
-      background-size: 114px 114px;
+      background-size: cover;
       background-position: center;
     }
 
@@ -374,7 +450,6 @@
       font-weight: 800;
     }
 
-    /* Favorite Floating Action Star Button on Cards */
     .fav-toggle-btn {
       border: none;
       background: rgba(0, 0, 0, 0.45);
@@ -508,53 +583,6 @@
       height: 16px;
       min-height: auto;
       cursor: pointer;
-    }
-
-    input,
-    select {
-      width: 100%;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      /* Premium translucent glass styling */
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--text);
-      font: inherit;
-      outline: none;
-      min-height: 40px;
-      /* Extra padding on the left to make room for a built-in search icon */
-      padding: 0 16px 0 38px; 
-      transition: border-color 200ms var(--ease), background 200ms var(--ease), box-shadow 200ms var(--ease);
-      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Embedded sleek search icon using a CSS background vector */
-    input[type="search"] {
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(167,173,186,0.5)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>');
-      background-repeat: no-repeat;
-      background-position: 14px center;
-    }
-
-    input::placeholder {
-      color: rgba(167, 173, 186, 0.5);
-      font-weight: 500;
-    }
-
-    input:focus,
-    select:focus {
-      background: rgba(255, 255, 255, 0.09);
-      /* Neon blue glow that blends into your background radial glow */
-      border-color: rgba(59, 130, 246, 0.8);
-      box-shadow: 
-        inset 0 1px 2px rgba(0, 0, 0, 0.2),
-        0 0 16px rgba(59, 130, 246, 0.25);
-    }
-
-    /* Clean up default annoying browser styling inside search fields */
-    input[type="search"]::-webkit-search-decoration,
-    input[type="search"]::-webkit-search-cancel-button,
-    input[type="search"]::-webkit-search-results-button,
-    input[type="search"]::-webkit-search-results-decoration {
-      display: none;
     }
 
     label {
@@ -717,7 +745,6 @@
       }
     }
 
-    /* Seamless breakdown on mid-to-small viewports */
     @media (max-width: 1100px) {
       header {
         grid-template-columns: auto 1fr auto;
@@ -772,7 +799,7 @@
       </div>
 
       <div class="search-wrap">
-        <input id="searchInput" type="search" placeholder="Search apps, shows, sports..." autocomplete="off" />
+        <input id="searchInput" type="search" placeholder="Search... (Try /y or /g or hit Enter)" autocomplete="off" />
       </div>
 
       <div class="top-panel">
@@ -844,12 +871,24 @@
     <div class="drawer-header">
       <div>
         <h3>Dashboard Settings</h3>
-        <div class="date">Add, edit, export, or reset shortcuts</div>
+        <div class="date">Add, edit, export, or change appearance</div>
       </div>
       <button class="icon-btn" id="closeDrawerBtn" type="button" aria-label="Close settings">×</button>
     </div>
 
     <div class="drawer-body">
+      <!-- Theme Selection Dropdown Control -->
+      <div class="form-card">
+        <div class="form-row">
+          <label for="themeSelect">Dashboard Theme Preset</label>
+          <select id="themeSelect">
+            <option value="default">Deep Cosmic Glass (Default)</option>
+            <option value="oled">Pure OLED Matte Black</option>
+            <option value="cyberpunk">Cyberpunk Neon Terminal</option>
+          </select>
+        </div>
+      </div>
+
       <form class="form-card" id="itemForm">
         <input type="hidden" id="itemId" />
 
@@ -909,6 +948,7 @@
 
   <script>
     const STORAGE_KEY = "hubDashboardData.v2";
+    const THEME_KEY = "hubDashboardTheme";
 
     const categories = [
       { id: "all", label: "All" },
@@ -939,6 +979,7 @@
       shuffleBtn: document.getElementById("shuffleBtn"),
       filters: document.getElementById("filters"),
       searchInput: document.getElementById("searchInput"),
+      themeSelect: document.getElementById("themeSelect"),
       itemForm: document.getElementById("itemForm"),
       itemId: document.getElementById("itemId"),
       itemCategory: document.getElementById("itemCategory"),
@@ -993,8 +1034,10 @@
     function getFilteredData() {
       const query = els.searchInput.value.trim().toLowerCase();
 
+      // Skip normal card filtering logic if an advanced user command is actively prefixing the text
+      if (query.startsWith("/")) return dashboardData;
+
       return dashboardData.filter(item => {
-        // Evaluate filter constraints across active tabs
         let matchesCategory = false;
         if (activeFilter === "all") matchesCategory = true;
         else if (activeFilter === "favorites") matchesCategory = item.favorite && item.category !== 'apps';
@@ -1010,7 +1053,6 @@
       els.filters.replaceChildren();
 
       categories.forEach(category => {
-        // Conditionally suppress rendering the global Favorites filter button if no favorites exist
         if (category.id === "favorites" && !dashboardData.some(i => i.favorite && i.category !== 'apps')) return;
 
         const button = createEl("button", "chip", category.label);
@@ -1037,7 +1079,6 @@
     function renderCards() {
       const filteredData = getFilteredData();
 
-      // Loop through all visible segment components
       categories
         .filter(category => category.id !== "all")
         .forEach(category => {
@@ -1084,7 +1125,6 @@
               textGroup.appendChild(createEl("div", "card-type", getCategoryLabel(item.category)));
               content.appendChild(textGroup);
 
-              // Inject the Star toggler action
               const favBtn = createEl("button", `fav-toggle-btn${item.favorite ? " is-fav" : ""}`);
               favBtn.type = "button";
               favBtn.innerHTML = "★";
@@ -1134,6 +1174,57 @@
         });
     }
 
+    /* Process Enter Key Actions: Resolves custom URL routing and index selection commands */
+    function handleSearchSubmit(event) {
+      if (event.key !== "Enter") return;
+
+      const rawInput = els.searchInput.value.trim();
+      if (!rawInput) return;
+
+      // Check Omnibox Command Prefix Matches
+      if (rawInput.startsWith("/")) {
+        const spaceIdx = rawInput.indexOf(" ");
+        const command = spaceIdx !== -1 ? rawInput.slice(0, spaceIdx) : rawInput;
+        const query = spaceIdx !== -1 ? rawInput.slice(spaceIdx + 1).trim() : "";
+
+        let destinationUrl = "";
+        if (command === "/y" && query) destinationUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`;
+        else if (command === "/g" && query) destinationUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+        else if (command === "/h" && query) destinationUrl = `https://www.hotstar.com/in/search?q=${encodeURIComponent(query)}`;
+
+        if (destinationUrl) {
+          window.open(destinationUrl, "_blank", "noopener,noreferrer");
+          els.searchInput.value = "";
+          render();
+          return;
+        }
+      }
+
+      // Default fallback match logic: Run the absolute first match currently on screen
+      const currentlyVisibleCards = document.querySelectorAll(".category-section.visible .card");
+      if (currentlyVisibleCards.length > 0) {
+        currentlyVisibleCards[0].click();
+        els.searchInput.value = "";
+        els.searchInput.blur();
+      }
+    }
+
+    /* CSS Variable Theme Engine Toggler Handler */
+    function applyTheme(themeName) {
+      document.body.className = ""; 
+      if (themeName !== "default") {
+        document.body.classList.add(`theme-${themeName}`);
+      }
+      localStorage.setItem(THEME_KEY, themeName);
+      els.themeSelect.value = themeName;
+    }
+
+    function initTheme() {
+      const savedTheme = localStorage.getItem(THEME_KEY) || "default";
+      applyTheme(savedTheme);
+      els.themeSelect.addEventListener("change", (e) => applyTheme(e.target.value));
+    }
+
     function render() {
       renderFilters();
       renderCards();
@@ -1164,7 +1255,6 @@
     }
 
     function handleCategoryFormChange() {
-      // Hide favorite checkbox if Category selected is 'apps'
       if (els.itemCategory.value === 'apps') {
         els.favFormWrapper.style.display = 'none';
         els.itemFavorite.checked = false;
@@ -1285,7 +1375,7 @@
       const url = URL.createObjectURL(blob);
       const anchor = document.createElement("a");
       anchor.href = url;
-      anchor.download = `home-player-${new Date().toISOString().slice(0, 10)}.json`;
+      anchor.download = `entertainment-hub-${new Date().toISOString().slice(0, 10)}.json`;
       document.body.appendChild(anchor);
       anchor.click();
       anchor.remove();
@@ -1364,6 +1454,7 @@
     els.scrim.addEventListener("click", closeDrawer);
     els.shuffleBtn.addEventListener("click", shufflePlay);
     els.searchInput.addEventListener("input", debounce(render, 120));
+    els.searchInput.addEventListener("keydown", handleSearchSubmit);
     els.itemForm.addEventListener("submit", upsertItem);
     els.clearFormBtn.addEventListener("click", clearForm);
     els.exportBtn.addEventListener("click", exportData);
@@ -1379,6 +1470,7 @@
     });
 
     handleCategoryFormChange();
+    initTheme();
     updateClock();
     setInterval(updateClock, 1000);
     render();
