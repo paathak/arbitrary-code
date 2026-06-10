@@ -20,6 +20,7 @@
       --success: #34d399;
       --warning: #fbbf24;
 
+      --favorites: #f59e0b;
       --apps: #ff007f;
       --movies-shows: #3b82f6;
       --sports: #10b981;
@@ -74,71 +75,68 @@
     .shell {
       width: min(1460px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 32px 0 72px;
+      padding: 24px 0 72px;
       position: relative;
       z-index: 1;
     }
 
+    /* Core Fix 1: Compact Single Top Navbar Row Layout */
     header {
       display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 24px;
+      grid-template-columns: auto 1fr auto auto;
+      gap: 16px;
       align-items: center;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
+      padding: 10px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
     }
 
-    .hero {
-      min-width: 0;
-    }
-
-    .eyebrow {
-      color: var(--muted);
-      text-transform: uppercase;
-      font-size: 0.78rem;
-      letter-spacing: 0.18em;
-      margin-bottom: 10px;
-    }
-
-    h1 {
-      font-size: clamp(1.15rem, 3vw, 2.5rem);
-      line-height: 1.15;
-      letter-spacing: -0.06em;
+    .hero h1 {
+      font-size: 1.5rem;
+      line-height: 1;
+      letter-spacing: -0.04em;
       background: linear-gradient(100deg, #fff, #c9d4ff 48%, #f7b8dc);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-wrap: balance;
+      white-space: nowrap;
+    }
+
+    .search-wrap {
+      width: 100%;
+      max-width: 480px;
+      margin-left: 8px;
     }
 
     .top-panel {
       display: flex;
       align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
+      gap: 10px;
     }
 
     .clock-card {
-      min-width: 150px;
+      min-width: 120px;
       border: 1px solid var(--border);
       border-radius: 999px;
-      padding: 11px 16px;
+      padding: 6px 14px;
       background: rgba(255,255,255,0.075);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
       text-align: center;
     }
 
     .clock {
-      font-size: 1.25rem;
+      font-size: 1.05rem;
       font-weight: 700;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.02em;
     }
 
     .date {
       color: var(--muted);
-      font-size: 0.72rem;
-      margin-top: 1px;
+      font-size: 0.65rem;
+      margin-top: -1px;
     }
 
     .btn,
@@ -158,19 +156,20 @@
 
     .btn,
     .file-btn {
-      min-height: 44px;
-      padding: 0 17px;
+      min-height: 38px;
+      padding: 0 14px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 9px;
+      gap: 6px;
       text-decoration: none;
       white-space: nowrap;
+      font-size: 0.9rem;
     }
 
     .icon-btn {
-      width: 42px;
-      height: 42px;
+      width: 38px;
+      height: 38px;
       display: grid;
       place-items: center;
       font-size: 1rem;
@@ -181,8 +180,8 @@
     .file-btn:hover {
       background: rgba(255,255,255,0.18);
       border-color: var(--border-strong);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 28px rgba(0,0,0,0.24);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
 
     .btn.primary {
@@ -190,68 +189,14 @@
       border-color: rgba(255,255,255,0.16);
     }
 
-    .toolbar {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 14px;
-      align-items: center;
-      margin: 28px 0 36px;
-      padding: 10px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      background: rgba(255,255,255,0.055);
-      backdrop-filter: blur(22px);
-      -webkit-backdrop-filter: blur(22px);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
-    }
-
-    .search-wrap {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding-left: 10px;
-      min-width: 0;
-    }
-
-    .search-wrap span {
-      color: var(--muted);
-    }
-
-    input,
-    select {
-      width: 100%;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      background: rgba(255,255,255,0.075);
-      color: var(--text);
-      font: inherit;
-      outline: none;
-      min-height: 44px;
-      padding: 0 13px;
-      transition: border-color 160ms ease, background 160ms ease, box-shadow 160ms ease;
-    }
-
-    input::placeholder {
-      color: rgba(167,173,186,0.75);
-    }
-
-    input:focus,
-    select:focus {
-      border-color: rgba(59,130,246,0.9);
-      box-shadow: 0 0 0 4px rgba(59,130,246,0.16);
-      background: rgba(255,255,255,0.1);
-    }
-
-    select option {
-      background: #151026;
-      color: #fff;
+    .filters-row {
+      margin-bottom: 28px;
     }
 
     .filters {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      justify-content: flex-end;
     }
 
     .chip {
@@ -259,11 +204,12 @@
       background: rgba(255,255,255,0.07);
       color: var(--muted);
       border-radius: 999px;
-      min-height: 38px;
-      padding: 0 13px;
+      min-height: 34px;
+      padding: 0 12px;
       cursor: pointer;
       font: inherit;
       font-weight: 750;
+      font-size: 0.85rem;
       transition: 180ms ease;
     }
 
@@ -277,7 +223,7 @@
     main {
       display: flex;
       flex-direction: column;
-      gap: 44px;
+      gap: 40px;
     }
 
     .category-section {
@@ -290,6 +236,7 @@
       animation: rise 360ms var(--ease) both;
     }
 
+    #favorites-sec { --accent: var(--favorites); }
     #apps-sec { --accent: var(--apps); }
     #movies-shows-sec { --accent: var(--movies-shows); }
     #sports-sec { --accent: var(--sports); }
@@ -307,7 +254,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      font-size: clamp(1.15rem, 2vw, 1.45rem);
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
       letter-spacing: -0.03em;
     }
 
@@ -325,12 +272,11 @@
       border: 1px solid var(--border);
       background: rgba(255,255,255,0.055);
       border-radius: 999px;
-      padding: 6px 10px;
-      font-size: 0.78rem;
+      padding: 4px 10px;
+      font-size: 0.75rem;
       font-weight: 750;
     }
 
-    /* Core fix 1: Prevent horizontal stretching on standard sections */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(210px, 250px));
@@ -342,13 +288,12 @@
       grid-template-columns: repeat(auto-fit, minmax(114px, 114px));
     }
 
-#apps-grid .card {
-border-radius:50% ;
-min-height: 114px;
-background-size: 114px 114px;
-}
-
-    
+    #apps-grid .card {
+      border-radius: 50%;
+      min-height: 114px;
+      background-size: 114px 114px;
+      background-position: center;
+    }
 
     .card {
       position: relative;
@@ -356,7 +301,6 @@ background-size: 114px 114px;
       min-width: 0;
       min-height: 145px;
       height: 100%;
-      aspect-ratio: auto;
       overflow: hidden;
       isolation: isolate;
       display: flex;
@@ -365,84 +309,96 @@ background-size: 114px 114px;
       color: inherit;
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
-      
-      /* Core fix 2: Change cover to contain to prevent zoomed-in images */
       background: rgba(255, 255, 255, 0.03);
       background-image: var(--image, none);
       background-size: contain;
       background-position: center;
       background-repeat: no-repeat;
-      
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
       transition: transform 260ms var(--ease), border-color 260ms var(--ease), box-shadow 260ms var(--ease);
     }
 
-    /* Gradient overlay adjustments to allow structural containment visibility */
     .card::before {
       content: "";
       position: absolute;
       inset: 0;
       z-index: -1;
-      background:
-        linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
-      opacity: 1;
-    }
-
-    .card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,0.16), transparent 45%);
-      opacity: 0;
-      transition: opacity 260ms ease;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
     }
 
     .card:hover,
     .card:focus-visible {
-      transform: translateY(-7px) scale(1.012);
+      transform: translateY(-5px) scale(1.01);
       border-color: color-mix(in srgb, var(--accent), white 18%);
-      box-shadow: 0 24px 60px color-mix(in srgb, var(--accent), transparent 74%);
+      box-shadow: 0 20px 48px color-mix(in srgb, var(--accent), transparent 78%);
       outline: none;
-    }
-
-    .card:hover::after,
-    .card:focus-visible::after {
-      opacity: 1;
     }
 
     .card-content {
       width: 100%;
-      padding: 18px;
+      padding: 16px;
       min-width: 0;
       position: relative;
       z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: flex-end;
+      gap: 8px;
     }
 
     #apps-grid .card-content {
       padding: 14px;
+      display: block;
+    }
+
+    .card-text-group {
+      min-width: 0;
     }
 
     .card-title {
-      font-size: 1.08rem;
+      font-size: 1.05rem;
       font-weight: 850;
-      letter-spacing: -0.035em;
+      letter-spacing: -0.03em;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       text-shadow: 0 2px 12px rgba(0,0,0,0.75);
     }
 
-    #apps-grid .card-title {
-      font-size: 0.98rem;
-    }
-
     .card-type {
-      margin-top: 5px;
+      margin-top: 3px;
       color: var(--muted);
-      font-size: 0.74rem;
-      letter-spacing: 0.14em;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       font-weight: 800;
+    }
+
+    /* Favorite Floating Action Star Button on Cards */
+    .fav-toggle-btn {
+      border: none;
+      background: rgba(0, 0, 0, 0.45);
+      color: rgba(255, 255, 255, 0.4);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      font-size: 0.95rem;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      transition: transform 180ms ease, color 180ms ease, background 180ms ease;
+    }
+
+    .fav-toggle-btn:hover {
+      transform: scale(1.1);
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    .fav-toggle-btn.is-fav {
+      color: var(--favorites);
+      text-shadow: 0 0 8px rgba(245, 158, 11, 0.6);
     }
 
     .empty {
@@ -467,7 +423,6 @@ background-size: 114px 114px;
       transition: opacity 300ms ease;
       z-index: 80;
       backdrop-filter: blur(2px);
-      -webkit-backdrop-filter: blur(2px);
     }
 
     .scrim.open {
@@ -537,6 +492,71 @@ background-size: 114px 114px;
       gap: 7px;
     }
 
+    .form-row-inline {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      user-select: none;
+      color: var(--muted);
+      font-weight: 750;
+      font-size: 0.8rem;
+    }
+
+    .form-row-inline input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      min-height: auto;
+      cursor: pointer;
+    }
+
+    input,
+    select {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      /* Premium translucent glass styling */
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      font: inherit;
+      outline: none;
+      min-height: 40px;
+      /* Extra padding on the left to make room for a built-in search icon */
+      padding: 0 16px 0 38px; 
+      transition: border-color 200ms var(--ease), background 200ms var(--ease), box-shadow 200ms var(--ease);
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Embedded sleek search icon using a CSS background vector */
+    input[type="search"] {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(167,173,186,0.5)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>');
+      background-repeat: no-repeat;
+      background-position: 14px center;
+    }
+
+    input::placeholder {
+      color: rgba(167, 173, 186, 0.5);
+      font-weight: 500;
+    }
+
+    input:focus,
+    select:focus {
+      background: rgba(255, 255, 255, 0.09);
+      /* Neon blue glow that blends into your background radial glow */
+      border-color: rgba(59, 130, 246, 0.8);
+      box-shadow: 
+        inset 0 1px 2px rgba(0, 0, 0, 0.2),
+        0 0 16px rgba(59, 130, 246, 0.25);
+    }
+
+    /* Clean up default annoying browser styling inside search fields */
+    input[type="search"]::-webkit-search-decoration,
+    input[type="search"]::-webkit-search-cancel-button,
+    input[type="search"]::-webkit-search-results-button,
+    input[type="search"]::-webkit-search-results-decoration {
+      display: none;
+    }
+
     label {
       color: var(--muted);
       text-transform: uppercase;
@@ -603,7 +623,7 @@ background-size: 114px 114px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      max-width: 230px;
+      max-width: 200px;
     }
 
     .manage-item-meta {
@@ -613,6 +633,9 @@ background-size: 114px 114px;
       text-transform: uppercase;
       letter-spacing: 0.12em;
       font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .manage-buttons {
@@ -687,78 +710,56 @@ background-size: 114px 114px;
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
+      *, *::before, *::after {
         animation-duration: 1ms !important;
         transition-duration: 1ms !important;
         scroll-behavior: auto !important;
       }
     }
 
-    @media (max-width: 900px) {
-      header,
-      .toolbar {
+    /* Seamless breakdown on mid-to-small viewports */
+    @media (max-width: 1100px) {
+      header {
+        grid-template-columns: auto 1fr auto;
+      }
+      .clock-card {
+        grid-column: span 3;
+        justify-self: stretch;
+      }
+    }
+
+    @media (max-width: 820px) {
+      header {
         grid-template-columns: 1fr;
+        gap: 12px;
       }
-
-      .top-panel,
-      .filters {
-        justify-content: flex-start;
+      .search-wrap {
+        max-width: 100%;
+        margin-left: 0;
       }
-
-      .toolbar {
-        padding: 12px;
+      .top-panel {
+        justify-content: space-between;
+      }
+      .clock-card {
+        grid-column: span 1;
       }
     }
 
     @media (max-width: 620px) {
       .shell {
         width: min(100% - 22px, 1460px);
-        padding-top: 22px;
+        padding-top: 16px;
       }
-
       .top-panel {
         display: grid;
         grid-template-columns: 1fr 1fr;
       }
-
-      .clock-card,
-      .top-panel .btn {
-        width: 100%;
-      }
-
       .clock-card {
         grid-column: 1 / -1;
-        order: -1;
       }
-
-      .grid,
-      #apps-grid,
-      #apps-grid:has(.card:nth-child(3):last-child),
-      #apps-grid:has(.card:nth-child(4):last-child),
-      #apps-grid:has(.card:nth-child(5):last-child) {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+      .grid, #apps-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
         gap: 12px;
-      }
-
-      #apps-grid:has(.card:nth-child(1):last-child) {
-        grid-template-columns: 1fr;
-      }
-
-      .card {
-        min-height: 118px;
-        height: auto;
-      }
-
-      .card-content,
-      #apps-grid .card-content {
-        padding: 12px;
-      }
-
-      .drawer-actions,
-      .utility-actions {
-        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -770,25 +771,35 @@ background-size: 114px 114px;
         <h1>Home Player</h1>
       </div>
 
+      <div class="search-wrap">
+        <input id="searchInput" type="search" placeholder="Search apps, shows, sports..." autocomplete="off" />
+      </div>
+
       <div class="top-panel">
         <button class="btn" id="configureBtn" type="button">Configure</button>
         <button class="btn primary" id="shuffleBtn" type="button">Shuffle Play</button>
-        <div class="clock-card" aria-live="polite">
-          <div class="clock" id="clock">00:00</div>
-          <div class="date" id="dateText">Today</div>
-        </div>
+      </div>
+
+      <div class="clock-card" aria-live="polite">
+        <div class="clock" id="clock">00:00</div>
+        <div class="date" id="dateText">Today</div>
       </div>
     </header>
 
-    <section class="toolbar" aria-label="Dashboard controls">
-      <div class="search-wrap">
-        <span aria-hidden="true"></span>
-        <input id="searchInput" type="search" placeholder="Search apps, shows, sports..." autocomplete="off" />
-      </div>
+    <section class="filters-row" aria-label="Dashboard filters">
       <div class="filters" id="filters"></div>
     </section>
 
     <main id="dashboard">
+      <section class="category-section" id="favorites-sec" data-category="favorites">
+        <div class="section-head">
+          <h2 class="category-title">Favorites</h2>
+          <span class="count-pill" id="favorites-count">0 items</span>
+        </div>
+        <div class="grid" id="favorites-grid"></div>
+        <div class="empty" id="favorites-empty">No favorite shortcuts marked yet.</div>
+      </section>
+
       <section class="category-section" id="apps-sec" data-category="apps">
         <div class="section-head">
           <h2 class="category-title">Apps</h2>
@@ -867,8 +878,15 @@ background-size: 114px 114px;
           <input type="url" id="itemImage" placeholder="https://... or leave blank" />
         </div>
 
+        <div class="form-row" id="favFormWrapper">
+          <label class="form-row-inline" for="itemFavorite">
+            <input type="checkbox" id="itemFavorite" />
+            Mark as Favorite shortcut
+          </label>
+        </div>
+
         <div class="drawer-actions">
-          <button class="btn primary" id="saveBtn" type="submit">Add Shortcut</button>
+          <button class="btn primary" id="saveBtn" type="submit">➕ Add Shortcut</button>
           <button class="btn" id="clearFormBtn" type="button">Clear</button>
         </div>
       </form>
@@ -894,6 +912,7 @@ background-size: 114px 114px;
 
     const categories = [
       { id: "all", label: "All" },
+      { id: "favorites", label: "⭐ Favorites" },
       { id: "apps", label: "Apps" },
       { id: "movies-shows", label: "Movies & Shows" },
       { id: "sports", label: "Sports" },
@@ -901,12 +920,12 @@ background-size: 114px 114px;
     ];
 
     const defaultDashboardData = [
-      { id: 1, category: "apps", title: "Hotstar", url: "https://www.hotstar.com/in/home", img: "https://d388d59m61mm0v.cloudfront.net/optimized/content/patners/network/images/hotstar-network-1739527935983.png" },
-      { id: 2, category: "apps", title: "Sony Liv", url: "https://www.sonyliv.com/", img: "https://d388d59m61mm0v.cloudfront.net/optimized/content/patners/network/images/sony-liv-network-1672231944071.png" },
-      { id: 3, category: "apps", title: "Watcho", url: "https://www.watcho.com/", img: "https://d2ivesio5kogrp.cloudfront.net/static/watcho/images/logo.svg" },
-      { id: 4, category: "apps", title: "YouTube", url: "https://www.youtube.com/", img: "https://assets.turbologo.com/blog/en/2019/10/19084944/youtube-logo-illustration-958x575.jpg" },
-      { id: 5, category: "apps", title: "Netflix", url: "https://www.netflix.com/in/", img: "https://static.vecteezy.com/system/resources/previews/020/190/686/original/netflix-logo-netflix-icon-free-free-vector.jpg" },
-      { id: 6, category: "apps", title: "ZEE5", url: "https://www.zee5.com/", img: "https://d388d59m61mm0v.cloudfront.net/optimized/content/patners/network/images/uenkzz.png" }
+      { id: 1, category: "apps", title: "Hotstar", url: "https://www.hotstar.com/in/home", img: "https://d388d59m61mm0v.cloudfront.net/optimized/content/patners/network/images/hotstar-network-1739527935983.png", favorite: false },
+      { id: 2, category: "apps", title: "Sony Liv", url: "https://www.sonyliv.com/", img: "https://d388d59m61mm0v.cloudfront.net/optimized/content/patners/network/images/sony-liv-network-1672231944071.png", favorite: false },
+      { id: 3, category: "apps", title: "Watcho", url: "https://www.watcho.com/", img: "https://d2ivesio5kogrp.cloudfront.net/static/watcho/images/logo.svg", favorite: false },
+      { id: 4, category: "apps", title: "YouTube", url: "https://www.youtube.com/", img: "https://assets.turbologo.com/blog/en/2019/10/19084944/youtube-logo-illustration-958x575.jpg", favorite: false },
+      { id: 5, category: "apps", title: "Netflix", url: "https://www.netflix.com/in/", img: "https://static.vecteezy.com/system/resources/previews/020/190/686/original/netflix-logo-netflix-icon-free-free-vector.jpg", favorite: false },
+      { id: 6, category: "apps", title: "ZEE5", url: "https://www.zee5.com/", img: "https://d388d59m61mm0v.cloudfront.net/optimized/content/patners/network/images/uenkzz.png", favorite: false }
     ];
 
     let dashboardData = loadData();
@@ -926,6 +945,8 @@ background-size: 114px 114px;
       itemTitle: document.getElementById("itemTitle"),
       itemUrl: document.getElementById("itemUrl"),
       itemImage: document.getElementById("itemImage"),
+      itemFavorite: document.getElementById("itemFavorite"),
+      favFormWrapper: document.getElementById("favFormWrapper"),
       saveBtn: document.getElementById("saveBtn"),
       clearFormBtn: document.getElementById("clearFormBtn"),
       exportBtn: document.getElementById("exportBtn"),
@@ -941,20 +962,7 @@ background-size: 114px 114px;
       try {
         const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
         if (Array.isArray(saved)) return saved;
-      } catch {
-        // Fall back to defaults.
-      }
-
-      try {
-        const legacy = JSON.parse(localStorage.getItem("hubDashboardData"));
-        if (Array.isArray(legacy)) {
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(legacy));
-          return legacy;
-        }
-      } catch {
-        // Fall back to defaults.
-      }
-
+      } catch {}
       return structuredClone(defaultDashboardData);
     }
 
@@ -986,7 +994,12 @@ background-size: 114px 114px;
       const query = els.searchInput.value.trim().toLowerCase();
 
       return dashboardData.filter(item => {
-        const matchesCategory = activeFilter === "all" || item.category === activeFilter;
+        // Evaluate filter constraints across active tabs
+        let matchesCategory = false;
+        if (activeFilter === "all") matchesCategory = true;
+        else if (activeFilter === "favorites") matchesCategory = item.favorite && item.category !== 'apps';
+        else matchesCategory = item.category === activeFilter;
+
         const haystack = `${item.title} ${item.category} ${item.url}`.toLowerCase();
         const matchesSearch = !query || haystack.includes(query);
         return matchesCategory && matchesSearch;
@@ -997,6 +1010,9 @@ background-size: 114px 114px;
       els.filters.replaceChildren();
 
       categories.forEach(category => {
+        // Conditionally suppress rendering the global Favorites filter button if no favorites exist
+        if (category.id === "favorites" && !dashboardData.some(i => i.favorite && i.category !== 'apps')) return;
+
         const button = createEl("button", "chip", category.label);
         button.type = "button";
         button.classList.toggle("active", activeFilter === category.id);
@@ -1008,9 +1024,20 @@ background-size: 114px 114px;
       });
     }
 
+    function toggleFavoriteState(id, event) {
+      event.preventDefault();
+      event.stopPropagation();
+      dashboardData = dashboardData.map(item => 
+        item.id === id ? { ...item, favorite: !item.favorite } : item
+      );
+      saveData();
+      render();
+    }
+
     function renderCards() {
       const filteredData = getFilteredData();
 
+      // Loop through all visible segment components
       categories
         .filter(category => category.id !== "all")
         .forEach(category => {
@@ -1018,10 +1045,25 @@ background-size: 114px 114px;
           const grid = document.getElementById(`${category.id}-grid`);
           const count = document.getElementById(`${category.id}-count`);
           const empty = document.getElementById(`${category.id}-empty`);
-          const items = filteredData.filter(item => item.category === category.id);
+          
+          let items = [];
+          if (category.id === "favorites") {
+            items = filteredData.filter(item => item.favorite && item.category !== 'apps');
+          } else {
+            items = filteredData.filter(item => item.category === category.id);
+          }
 
           grid.replaceChildren();
-          section.classList.toggle("visible", activeFilter === "all" ? items.length > 0 || dashboardData.some(item => item.category === category.id) : category.id === activeFilter);
+
+          let sectionVisibility = false;
+          if (activeFilter === "all") {
+            if (category.id === "favorites") sectionVisibility = items.length > 0;
+            else sectionVisibility = items.length > 0 || dashboardData.some(item => item.category === category.id);
+          } else {
+            sectionVisibility = category.id === activeFilter;
+          }
+
+          section.classList.toggle("visible", sectionVisibility);
           count.textContent = `${items.length} ${items.length === 1 ? "item" : "items"}`;
           empty.classList.toggle("visible", items.length === 0);
 
@@ -1035,10 +1077,22 @@ background-size: 114px 114px;
             if (item.img) card.style.setProperty("--image", `url("${item.img.replaceAll('"', "%22")}")`);
 
             const content = createEl("div", "card-content");
-if(item.category!='apps'){
-            content.appendChild(createEl("div", "card-title", item.title));
-            content.appendChild(createEl("div", "card-type", getCategoryLabel(item.category)));
-}
+            
+            if (item.category !== 'apps') {
+              const textGroup = createEl("div", "card-text-group");
+              textGroup.appendChild(createEl("div", "card-title", item.title));
+              textGroup.appendChild(createEl("div", "card-type", getCategoryLabel(item.category)));
+              content.appendChild(textGroup);
+
+              // Inject the Star toggler action
+              const favBtn = createEl("button", `fav-toggle-btn${item.favorite ? " is-fav" : ""}`);
+              favBtn.type = "button";
+              favBtn.innerHTML = "★";
+              favBtn.title = item.favorite ? "Remove from Favorites" : "Mark as Favorite";
+              favBtn.addEventListener("click", (e) => toggleFavoriteState(item.id, e));
+              content.appendChild(favBtn);
+            }
+            
             card.appendChild(content);
             grid.appendChild(card);
           });
@@ -1060,7 +1114,9 @@ if(item.category!='apps'){
 
           const info = createEl("div");
           info.appendChild(createEl("div", "manage-item-title", item.title));
-          info.appendChild(createEl("div", "manage-item-meta", getCategoryLabel(item.category)));
+          
+          const metaString = getCategoryLabel(item.category) + (item.favorite && item.category !== 'apps' ? " (⭐ Fav)" : "");
+          info.appendChild(createEl("div", "manage-item-meta", metaString));
 
           const buttons = createEl("div", "manage-buttons");
 
@@ -1107,11 +1163,23 @@ if(item.category!='apps'){
       els.configureBtn.focus();
     }
 
+    function handleCategoryFormChange() {
+      // Hide favorite checkbox if Category selected is 'apps'
+      if (els.itemCategory.value === 'apps') {
+        els.favFormWrapper.style.display = 'none';
+        els.itemFavorite.checked = false;
+      } else {
+        els.favFormWrapper.style.display = 'block';
+      }
+    }
+    els.itemCategory.addEventListener("change", handleCategoryFormChange);
+
     function clearForm() {
       els.itemForm.reset();
       els.itemId.value = "";
-      els.saveBtn.textContent = "âž• Add Shortcut";
+      els.saveBtn.textContent = "➕ Add Shortcut";
       els.itemCategory.value = "apps";
+      handleCategoryFormChange();
     }
 
     function upsertItem(event) {
@@ -1121,6 +1189,7 @@ if(item.category!='apps'){
       const title = els.itemTitle.value.trim();
       const url = els.itemUrl.value.trim();
       const img = els.itemImage.value.trim();
+      const favorite = category !== 'apps' && els.itemFavorite.checked;
 
       if (!title || !url) {
         showToast("Please add both title and URL.");
@@ -1141,7 +1210,7 @@ if(item.category!='apps'){
 
       if (editingId) {
         dashboardData = dashboardData.map(item =>
-          item.id === editingId ? { ...item, category, title, url, img: img || null } : item
+          item.id === editingId ? { ...item, category, title, url, img: img || null, favorite } : item
         );
         showToast("Shortcut updated.");
       } else {
@@ -1150,7 +1219,8 @@ if(item.category!='apps'){
           category,
           title,
           url,
-          img: img || null
+          img: img || null,
+          favorite
         });
         showToast("Shortcut added.");
       }
@@ -1169,7 +1239,11 @@ if(item.category!='apps'){
       els.itemTitle.value = item.title;
       els.itemUrl.value = item.url;
       els.itemImage.value = item.img || "";
-      els.saveBtn.textContent = "ðŸ’¾ Save Changes";
+      els.itemFavorite.checked = !!item.favorite;
+      
+      handleCategoryFormChange();
+      
+      els.saveBtn.textContent = "💾 Save Changes";
       els.itemTitle.focus();
     }
 
@@ -1182,6 +1256,9 @@ if(item.category!='apps'){
 
       dashboardData = dashboardData.filter(entry => entry.id !== id);
       saveData();
+      if (activeFilter === "favorites" && !dashboardData.some(i => i.favorite && i.category !== 'apps')) {
+        activeFilter = "all";
+      }
       render();
       showToast("Shortcut removed.");
     }
@@ -1190,8 +1267,7 @@ if(item.category!='apps'){
       let pool = getFilteredData();
 
       pool = pool.filter(item => {
-        const matchesCategory = (item.category != "apps") || (activeFilter === "apps" && item.category === "apps") ;
-        return matchesCategory;
+        return (item.category !== "apps") || (activeFilter === "apps" && item.category === "apps");
       });
 
       if (!pool.length) {
@@ -1209,7 +1285,7 @@ if(item.category!='apps'){
       const url = URL.createObjectURL(blob);
       const anchor = document.createElement("a");
       anchor.href = url;
-      anchor.download = `entertainment-hub-${new Date().toISOString().slice(0, 10)}.json`;
+      anchor.download = `home-player-${new Date().toISOString().slice(0, 10)}.json`;
       document.body.appendChild(anchor);
       anchor.click();
       anchor.remove();
@@ -1235,12 +1311,16 @@ if(item.category!='apps'){
               category: ["apps", "movies-shows", "sports", "other"].includes(item.category) ? item.category : "other",
               title: String(item.title).slice(0, 60),
               url: String(item.url),
-              img: item.img && isValidUrl(item.img) ? String(item.img) : null
+              img: item.img && isValidUrl(item.img) ? String(item.img) : null,
+              favorite: !!item.favorite && item.category !== 'apps'
             }));
 
           dashboardData = sanitized;
           saveData();
           clearForm();
+          if (activeFilter === "favorites" && !dashboardData.some(i => i.favorite && i.category !== 'apps')) {
+            activeFilter = "all";
+          }
           render();
           showToast(`Imported ${sanitized.length} shortcuts.`);
         } catch {
@@ -1260,30 +1340,30 @@ if(item.category!='apps'){
       dashboardData = structuredClone(defaultDashboardData);
       saveData();
       clearForm();
+      activeFilter = "all";
       render();
       showToast("Defaults restored.");
     }
 
     function updateClock() {
       const now = new Date();
+      els.clock.textContent = now.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+      els.dateText.textContent = now.toLocaleDateString([], { weekday: "short", month: "short", day: "numeric" });
+    }
 
-      els.clock.textContent = now.toLocaleTimeString([], {
-        hour: "numeric",
-        minute: "2-digit"
-      });
-
-      els.dateText.textContent = now.toLocaleDateString([], {
-        weekday: "short",
-        month: "short",
-        day: "numeric"
-      });
+    function debounce(func, delay) {
+      let timeoutId;
+      return (...args) => {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => func.apply(this, args), delay);
+      };
     }
 
     els.configureBtn.addEventListener("click", openDrawer);
     els.closeDrawerBtn.addEventListener("click", closeDrawer);
     els.scrim.addEventListener("click", closeDrawer);
     els.shuffleBtn.addEventListener("click", shufflePlay);
-    els.searchInput.addEventListener("input", render);
+    els.searchInput.addEventListener("input", debounce(render, 120));
     els.itemForm.addEventListener("submit", upsertItem);
     els.clearFormBtn.addEventListener("click", clearForm);
     els.exportBtn.addEventListener("click", exportData);
@@ -1298,6 +1378,7 @@ if(item.category!='apps'){
       }
     });
 
+    handleCategoryFormChange();
     updateClock();
     setInterval(updateClock, 1000);
     render();
