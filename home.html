@@ -1182,15 +1182,18 @@
       if (!rawInput) return;
 
       // Check Omnibox Command Prefix Matches
-      if (rawInput.startsWith("/")) {
+      if (rawInput.startsWith("/") || rawInput.startsWith("google") || rawInput.startsWith("youtube") ||
+          rawInput.startsWith("hotstar") || rawInput.startsWith("sony") || rawInput.startsWith("zee")) {
         const spaceIdx = rawInput.indexOf(" ");
         const command = spaceIdx !== -1 ? rawInput.slice(0, spaceIdx) : rawInput;
         const query = spaceIdx !== -1 ? rawInput.slice(spaceIdx + 1).trim() : "";
 
         let destinationUrl = "";
-        if (command === "/y" && query) destinationUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`;
-        else if (command === "/g" && query) destinationUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-        else if (command === "/h" && query) destinationUrl = `https://www.hotstar.com/in/search?q=${encodeURIComponent(query)}`;
+        if ((command === "/y" || command === "youtube") && query) destinationUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`;
+        else if ((command === "/g" || command === "google") && query) destinationUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+        else if ((command === "/h" || command === "hotstar") && query) destinationUrl = `https://www.hotstar.com/in/search?search_query=${encodeURIComponent(query)}`;
+        else if ((command === "/s" || command === "sony") && query) destinationUrl = `https://www.sonyliv.com/search?q=${encodeURIComponent(query)}`;
+        else if ((command === "/z" || command === "zee") && query) destinationUrl = `https://www.zee5.com/search?q=${encodeURIComponent(query)}`;
 
         if (destinationUrl) {
           window.open(destinationUrl, "_blank", "noopener,noreferrer");
