@@ -1161,7 +1161,7 @@
             if (item.category !== 'apps') {
               const textGroup = createEl("div", "card-text-group");
               textGroup.appendChild(createEl("div", "card-title", item.title));
-              textGroup.appendChild(createEl("div", "card-type", getCategoryLabel(item.category)));
+              // textGroup.appendChild(createEl("div", "card-type", getCategoryLabel(item.category)));
               content.appendChild(textGroup);
 
               const favBtn = createEl("button", `fav-toggle-btn${item.favorite ? " is-fav" : ""}`);
