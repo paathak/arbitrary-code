@@ -1182,10 +1182,11 @@
       if (!rawInput) return;
 
       // Check Omnibox Command Prefix Matches
-      if (rawInput.startsWith("/") || rawInput.startsWith("google") || rawInput.startsWith("youtube") ||
-          rawInput.startsWith("hotstar") || rawInput.startsWith("sony") || rawInput.startsWith("zee")) {
+      if (rawInput.startsWith("/") || rawInput.toLowerCase().startsWith("google") || rawInput.toLowerCase().startsWith("youtube") ||
+        rawInput.toLowerCase().startsWith("hotstar") || rawInput.toLowerCase().startsWith("sony") || rawInput.toLowerCase().startsWith("zee")) {
         const spaceIdx = rawInput.indexOf(" ");
-        const command = spaceIdx !== -1 ? rawInput.slice(0, spaceIdx) : rawInput;
+        let command = spaceIdx !== -1 ? rawInput.slice(0, spaceIdx) : rawInput;
+        command = command.toLowerCase();
         const query = spaceIdx !== -1 ? rawInput.slice(spaceIdx + 1).trim() : "";
 
         let destinationUrl = "";
