@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "category": "apps",
+    "title": "Hotstar",
+    "url": "https://www.hotstar.com/in/home",
+    "img": "https://d388d59m61mm0v.cloudfront.net/optimized/content/patners/network/images/hotstar-network-1739527935983.png"
+  },
+  {
+    "id": 2,
+    "category": "apps",
+    "title": "Sony Liv",
+    "url": "https://www.sonyliv.com/",
+    "img": "https://d388d59m61mm0v.cloudfront.net/optimized/content/patners/network/images/sony-liv-network-1672231944071.png"
+  },
+  {
+    "id": 3,
+    "category": "apps",
+    "title": "Watcho",
+    "url": "https://www.watcho.com/",
+    "img": "https://d2ivesio5kogrp.cloudfront.net/static/watcho/images/logo.svg"
+  },
+  {
+    "id": 4,
+    "category": "apps",
+    "title": "YouTube",
+    "url": "https://www.youtube.com/",
+    "img": "https://assets.turbologo.com/blog/en/2019/10/19084944/youtube-logo-illustration-958x575.jpg"
+  },
+  {
+    "id": 5,
+    "category": "apps",
+    "title": "Netflix",
+    "url": "https://www.netflix.com/in/",
+    "img": "https://static.vecteezy.com/system/resources/previews/020/190/686/original/netflix-logo-netflix-icon-free-free-vector.jpg"
+  },
+  {
+    "id": 6,
+    "category": "apps",
+    "title": "ZEE5",
+    "url": "https://www.zee5.com/",
+    "img": "https://d388d59m61mm0v.cloudfront.net/optimized/content/patners/network/images/uenkzz.png"
+  },
+  {
+    "id": 7,
+    "category": "movies-shows",
+    "title": "Gullak S5",
+    "url": "https://www.sonyliv.com/shows/gullak-1700000659/season/5",
+    "img": "https://images.slivcdn.com/videoasset_images/manage_file/1000019194/178058686609120_Gullak_S05_Ep01_landscape_thumb.jpg?h=131&w=234&q=high",
+    "favorite": false
+  },
+  {
+    "id": 8,
+    "category": "sports",
+    "title": "Fifa WC",
+    "url": "https://www.zee5.com/sports/football/fifa-world-cup/2026",
+    "img": "https://akamaividz2.zee5.com/image/upload/w_1188,h_475,c_scale,f_avif,q_auto:eco/resources/0-1-6z5975633/cover/1920x770b756e1754ff54341bde8bbef596e3007c4081d61237043d789a121c293bf7429fa4ca2d382124a8d833f03907c2e258b.jpg",
+    "favorite": false
+  },
+  {
+    "id": 9,
+    "category": "movies-shows",
+    "title": "The Office",
+    "url": "https://www.hotstar.com/in/shows/the-office/1971003010",
+    "img": "https://img10.hotstar.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/8882/1734428968882-v",
+    "favorite": false
+  }
+]
