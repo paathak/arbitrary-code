@@ -1272,21 +1272,21 @@
       els.themeSelect.addEventListener("change", (e) => applyTheme(e.target.value));
     }
 
-    let openModeSetting = null;
+let openModeSetting = true; // Default to true (New Tab)
 
-    function initOpenMode() {
-      let openModeSettingVal = localStorage.getItem(OPEN_MODE_SETTING_KEY) || "New Tab";
-      openModeSetting = (openModeSettingVal === null || !openModeSettingVal === "Same Tab") ? true : false;
-      els.openModeToggleButton.textContent = `New link opens in: ${openModeSettingVal}`;
-    }
+function initOpenMode() {
+  const openModeSettingVal = localStorage.getItem(OPEN_MODE_SETTING_KEY) || "New Tab";
+  openModeSetting = (openModeSettingVal === "New Tab");
+  els.openModeToggleButton.textContent = `New link opens in: ${openModeSettingVal}`;
+}
 
-    function toggleOpenModeSetting() {
-      openModeSetting = !openModeSetting;
-      let openModeSettingVal = (openModeSetting) ? "New Tab" : "Same Tab";
-      els.openModeToggleButton.textContent = `New link opens in: ${openModeSettingVal}`;
-      localStorage.setItem(OPEN_MODE_SETTING_KEY, openModeSettingVal);
-      render();
-    }
+function toggleOpenModeSetting() {
+  openModeSetting = !openModeSetting;
+  const openModeSettingVal = openModeSetting ? "New Tab" : "Same Tab";
+  els.openModeToggleButton.textContent = `New link opens in: ${openModeSettingVal}`;
+  localStorage.setItem(OPEN_MODE_SETTING_KEY, openModeSettingVal);
+  render();
+}
 
     function render() {
       renderFilters();
@@ -1537,9 +1537,9 @@
       }
     });
 
+    initOpenMode();
     handleCategoryFormChange();
     initTheme();
-    initOpenMode();
     updateClock();
     setInterval(updateClock, 1000);
     render();
