@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,7 +14,7 @@
       --radial-1: rgba(255, 0, 127, 0.22);
       --radial-2: rgba(59, 130, 246, 0.18);
       --radial-3: rgba(168, 85, 247, 0.18);
-      
+
       --surface: rgba(255, 255, 255, 0.065);
       --surface-strong: rgba(255, 255, 255, 0.12);
       --surface-hover: rgba(255, 255, 255, 0.18);
@@ -95,10 +96,10 @@
       inset: 0;
       pointer-events: none;
       background-image:
-        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
       background-size: 46px 46px;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.65), transparent 78%);
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.65), transparent 78%);
     }
 
     body.drawer-open {
@@ -122,7 +123,7 @@
       padding: 10px 16px;
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      background: rgba(255,255,255,0.04);
+      background: rgba(255, 255, 255, 0.04);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
     }
@@ -160,7 +161,7 @@
     }
 
     input[type="search"] {
-      padding: 0 16px 0 38px; 
+      padding: 0 16px 0 38px;
       background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(167,173,186,0.5)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>');
       background-repeat: no-repeat;
       background-position: 14px center;
@@ -175,7 +176,7 @@
     select:focus {
       background: rgba(255, 255, 255, 0.09);
       border-color: rgba(59, 130, 246, 0.8);
-      box-shadow: 
+      box-shadow:
         inset 0 1px 2px rgba(0, 0, 0, 0.2),
         0 0 16px rgba(59, 130, 246, 0.25);
     }
@@ -198,8 +199,8 @@
       border: 1px solid var(--border);
       border-radius: 999px;
       padding: 6px 14px;
-      background: rgba(255,255,255,0.075);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.075);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
       text-align: center;
     }
 
@@ -254,15 +255,15 @@
     .btn:hover,
     .icon-btn:hover,
     .file-btn:hover {
-      background: rgba(255,255,255,0.18);
+      background: rgba(255, 255, 255, 0.18);
       border-color: var(--border-strong);
       transform: translateY(-1px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     }
 
     .btn.primary {
-      background: linear-gradient(135deg, rgba(59,130,246,0.9), rgba(168,85,247,0.9));
-      border-color: rgba(255,255,255,0.16);
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.9), rgba(168, 85, 247, 0.9));
+      border-color: rgba(255, 255, 255, 0.16);
     }
 
     .filters-row {
@@ -277,7 +278,7 @@
 
     .chip {
       border: 1px solid var(--border);
-      background: rgba(255,255,255,0.07);
+      background: rgba(255, 255, 255, 0.07);
       color: var(--muted);
       border-radius: 999px;
       min-height: 34px;
@@ -292,7 +293,7 @@
     .chip:hover,
     .chip.active {
       color: var(--text);
-      background: rgba(255,255,255,0.16);
+      background: rgba(255, 255, 255, 0.16);
       border-color: var(--border-strong);
     }
 
@@ -312,11 +313,25 @@
       animation: rise 360ms var(--ease) both;
     }
 
-    #favorites-sec { --accent: var(--favorites); }
-    #apps-sec { --accent: var(--apps); }
-    #movies-shows-sec { --accent: var(--movies-shows); }
-    #sports-sec { --accent: var(--sports); }
-    #other-sec { --accent: var(--other); }
+    #favorites-sec {
+      --accent: var(--favorites);
+    }
+
+    #apps-sec {
+      --accent: var(--apps);
+    }
+
+    #movies-shows-sec {
+      --accent: var(--movies-shows);
+    }
+
+    #sports-sec {
+      --accent: var(--sports);
+    }
+
+    #other-sec {
+      --accent: var(--other);
+    }
 
     .section-head {
       display: flex;
@@ -346,7 +361,7 @@
     .count-pill {
       color: var(--muted);
       border: 1px solid var(--border);
-      background: rgba(255,255,255,0.055);
+      background: rgba(255, 255, 255, 0.055);
       border-radius: 999px;
       padding: 4px 10px;
       font-size: 0.75rem;
@@ -390,7 +405,7 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
       transition: transform 260ms var(--ease), border-color 260ms var(--ease), box-shadow 260ms var(--ease);
     }
 
@@ -399,7 +414,7 @@
       position: absolute;
       inset: 0;
       z-index: -1;
-      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%);
     }
 
     .card:hover,
@@ -438,7 +453,7 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.75);
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.75);
     }
 
     .card-type {
@@ -482,7 +497,7 @@
       border-radius: var(--radius-md);
       padding: 24px;
       color: var(--muted);
-      background: rgba(255,255,255,0.045);
+      background: rgba(255, 255, 255, 0.045);
     }
 
     .empty.visible {
@@ -492,7 +507,7 @@
     .scrim {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.48);
+      background: rgba(0, 0, 0, 0.48);
       opacity: 0;
       pointer-events: none;
       transition: opacity 300ms ease;
@@ -552,7 +567,7 @@
     .form-card,
     .manage-card {
       border: 1px solid var(--border);
-      background: rgba(255,255,255,0.055);
+      background: rgba(255, 255, 255, 0.055);
       border-radius: var(--radius-md);
       padding: 16px;
     }
@@ -631,7 +646,7 @@
 
     .manage-list::-webkit-scrollbar-thumb,
     .drawer-body::-webkit-scrollbar-thumb {
-      background: rgba(255,255,255,0.16);
+      background: rgba(255, 255, 255, 0.16);
       border-radius: 999px;
     }
 
@@ -642,7 +657,7 @@
       align-items: center;
       border: 1px solid var(--border);
       border-radius: 14px;
-      background: rgba(255,255,255,0.055);
+      background: rgba(255, 255, 255, 0.055);
       padding: 11px;
     }
 
@@ -673,7 +688,7 @@
 
     .mini-btn {
       border: 1px solid var(--border);
-      background: rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.08);
       color: var(--text);
       border-radius: 10px;
       height: 34px;
@@ -684,7 +699,7 @@
     }
 
     .mini-btn:hover {
-      background: rgba(255,255,255,0.16);
+      background: rgba(255, 255, 255, 0.16);
     }
 
     .mini-btn.remove {
@@ -717,7 +732,7 @@
       z-index: 140;
       border: 1px solid var(--border);
       border-radius: 999px;
-      background: rgba(15,12,27,0.86);
+      background: rgba(15, 12, 27, 0.86);
       color: var(--text);
       box-shadow: var(--shadow);
       padding: 13px 18px;
@@ -733,12 +748,22 @@
     }
 
     @keyframes rise {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
+
+      *,
+      *::before,
+      *::after {
         animation-duration: 1ms !important;
         transition-duration: 1ms !important;
         scroll-behavior: auto !important;
@@ -749,6 +774,7 @@
       header {
         grid-template-columns: auto 1fr auto;
       }
+
       .clock-card {
         grid-column: span 3;
         justify-self: stretch;
@@ -760,13 +786,16 @@
         grid-template-columns: 1fr;
         gap: 12px;
       }
+
       .search-wrap {
         max-width: 100%;
         margin-left: 0;
       }
+
       .top-panel {
         justify-content: space-between;
       }
+
       .clock-card {
         grid-column: span 1;
       }
@@ -777,20 +806,25 @@
         width: min(100% - 22px, 1460px);
         padding-top: 16px;
       }
+
       .top-panel {
         display: grid;
         grid-template-columns: 1fr 1fr;
       }
+
       .clock-card {
         grid-column: 1 / -1;
       }
-      .grid, #apps-grid {
+
+      .grid,
+      #apps-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
         gap: 12px;
       }
     }
   </style>
 </head>
+
 <body>
   <div class="shell">
     <header>
@@ -844,7 +878,7 @@
         <div class="grid" id="sports-grid"></div>
         <div class="empty" id="sports-empty">No sports shortcuts yet.</div>
       </section>
-      
+
       <section class="category-section" id="movies-shows-sec" data-category="movies-shows">
         <div class="section-head">
           <h2 class="category-title">Movies & Shows</h2>
@@ -888,7 +922,7 @@
           </select>
         </div>
       </div>
-
+      <button class="btn" id="toggleButton" type="button">New link opens in: Loading...</button>
       <form class="form-card" id="itemForm">
         <input type="hidden" id="itemId" />
 
@@ -949,6 +983,8 @@
   <script>
     const STORAGE_KEY = "hubDashboardData.v2";
     const THEME_KEY = "hubDashboardTheme";
+    const OPEN_MODE_SETTING_KEY = "hubDashboardNewTabSetting";
+
 
     const categories = [
       { id: "all", label: "All" },
@@ -980,6 +1016,7 @@
       filters: document.getElementById("filters"),
       searchInput: document.getElementById("searchInput"),
       themeSelect: document.getElementById("themeSelect"),
+      openModeToggleButton: document.getElementById("toggleButton"),
       itemForm: document.getElementById("itemForm"),
       itemId: document.getElementById("itemId"),
       itemCategory: document.getElementById("itemCategory"),
@@ -1003,7 +1040,7 @@
       try {
         const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
         if (Array.isArray(saved)) return saved;
-      } catch {}
+      } catch { }
       return structuredClone(defaultDashboardData);
     }
 
@@ -1069,7 +1106,7 @@
     function toggleFavoriteState(id, event) {
       event.preventDefault();
       event.stopPropagation();
-      dashboardData = dashboardData.map(item => 
+      dashboardData = dashboardData.map(item =>
         item.id === id ? { ...item, favorite: !item.favorite } : item
       );
       saveData();
@@ -1086,7 +1123,7 @@
           const grid = document.getElementById(`${category.id}-grid`);
           const count = document.getElementById(`${category.id}-count`);
           const empty = document.getElementById(`${category.id}-empty`);
-          
+
           let items = [];
           if (category.id === "favorites") {
             items = filteredData.filter(item => item.favorite && item.category !== 'apps');
@@ -1112,13 +1149,15 @@
             const card = document.createElement("a");
             card.className = "card";
             card.href = item.url;
-            card.target = "_blank";
-            card.rel = "noopener noreferrer";
+            if (openModeSetting) {
+              card.target = "_blank";
+              card.rel = "noopener noreferrer";
+            }
             card.setAttribute("aria-label", `Open ${item.title}`);
             if (item.img) card.style.setProperty("--image", `url("${item.img.replaceAll('"', "%22")}")`);
 
             const content = createEl("div", "card-content");
-            
+
             if (item.category !== 'apps') {
               const textGroup = createEl("div", "card-text-group");
               textGroup.appendChild(createEl("div", "card-title", item.title));
@@ -1132,7 +1171,7 @@
               favBtn.addEventListener("click", (e) => toggleFavoriteState(item.id, e));
               content.appendChild(favBtn);
             }
-            
+
             card.appendChild(content);
             grid.appendChild(card);
           });
@@ -1154,7 +1193,7 @@
 
           const info = createEl("div");
           info.appendChild(createEl("div", "manage-item-title", item.title));
-          
+
           const metaString = getCategoryLabel(item.category) + (item.favorite && item.category !== 'apps' ? " (⭐ Fav)" : "");
           info.appendChild(createEl("div", "manage-item-meta", metaString));
 
@@ -1197,7 +1236,11 @@
         else if ((command === "/z" || command === "zee") && query) destinationUrl = `https://www.zee5.com/search?q=${encodeURIComponent(query)}`;
 
         if (destinationUrl) {
-          window.open(destinationUrl, "_blank", "noopener,noreferrer");
+          if (openModeSetting) {
+            window.open(destinationUrl, "_blank", "noopener,noreferrer");
+          } else {
+            window.open(destinationUrl, "_self");
+          }
           els.searchInput.value = "";
           render();
           return;
@@ -1215,7 +1258,7 @@
 
     /* CSS Variable Theme Engine Toggler Handler */
     function applyTheme(themeName) {
-      document.body.className = ""; 
+      document.body.className = "";
       if (themeName !== "default") {
         document.body.classList.add(`theme-${themeName}`);
       }
@@ -1227,6 +1270,22 @@
       const savedTheme = localStorage.getItem(THEME_KEY) || "default";
       applyTheme(savedTheme);
       els.themeSelect.addEventListener("change", (e) => applyTheme(e.target.value));
+    }
+
+    let openModeSetting = null;
+
+    function initOpenMode() {
+      let openModeSettingVal = localStorage.getItem(OPEN_MODE_SETTING_KEY) || "New Tab";
+      openModeSetting = (openModeSettingVal === null || !openModeSettingVal === "Same Tab") ? true : false;
+      els.openModeToggleButton.textContent = `New link opens in: ${openModeSettingVal}`;
+    }
+
+    function toggleOpenModeSetting() {
+      openModeSetting = !openModeSetting;
+      let openModeSettingVal = (openModeSetting) ? "New Tab" : "Same Tab";
+      els.openModeToggleButton.textContent = `New link opens in: ${openModeSettingVal}`;
+      localStorage.setItem(OPEN_MODE_SETTING_KEY, openModeSettingVal);
+      render();
     }
 
     function render() {
@@ -1334,9 +1393,9 @@
       els.itemUrl.value = item.url;
       els.itemImage.value = item.img || "";
       els.itemFavorite.checked = !!item.favorite;
-      
+
       handleCategoryFormChange();
-      
+
       els.saveBtn.textContent = "💾 Save Changes";
       els.itemTitle.focus();
     }
@@ -1370,7 +1429,11 @@
       }
 
       const random = pool[Math.floor(Math.random() * pool.length)];
-      window.open(random.url, "_blank", "noopener,noreferrer");
+      if (openModeSetting) {
+        window.open(random.url, "_blank", "noopener,noreferrer");
+      } else {
+        window.open(random.url, "_self");
+      }
       showToast(`Opening ${random.title}...`);
     }
 
@@ -1464,6 +1527,7 @@
     els.exportBtn.addEventListener("click", exportData);
     els.importFile.addEventListener("change", importData);
     els.resetBtn.addEventListener("click", resetDefaults);
+    els.openModeToggleButton.addEventListener("click", toggleOpenModeSetting);
 
     document.addEventListener("keydown", event => {
       if (event.key === "Escape" && els.drawer.classList.contains("open")) closeDrawer();
@@ -1475,9 +1539,11 @@
 
     handleCategoryFormChange();
     initTheme();
+    initOpenMode();
     updateClock();
     setInterval(updateClock, 1000);
     render();
   </script>
 </body>
+
 </html>
