@@ -38,7 +38,7 @@
         <row>
             <button icon="vdown" onTap="volume_down" color="#202124" />
             <button icon="vmute" onTap="volume_mute" color="#202124" />
-            <button text="vup" onTap="volume_up" color="#202124" />
+            <button icon="vup" onTap="volume_up" color="#202124" />
         </row>
 
         <row>
