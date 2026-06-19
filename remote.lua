@@ -57,12 +57,12 @@ end
 
 --@help Scroll page up (PgUp)
 actions.pg_up = function()
-    keyboard.stroke("space")
+    keyboard.stroke("shift","space")
 end
 
 --@help Scroll page down (PgDn)
 actions.pg_down = function()
-    keyboard.stroke("shift","space")
+    keyboard.stroke("space")
 end
 
 --@help Fullscreen view
