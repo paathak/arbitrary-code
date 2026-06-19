@@ -57,12 +57,12 @@ end
 
 --@help Scroll page up (PgUp)
 actions.pg_up = function()
-    keyboard.stroke("pgup")
+    keyboard.stroke("space")
 end
 
 --@help Scroll page down (PgDn)
 actions.pg_down = function()
-    keyboard.stroke("pgdown")
+    keyboard.stroke("shift","space")
 end
 
 --@help Fullscreen view
@@ -93,14 +93,14 @@ actions.play_pause = function()
     keyboard.stroke("space")
 end
 
---@help Raise volume
-actions.volume_up = function()
-    keyboard.stroke("volumeup")
+--@help Go back
+actions.back = function()
+    keyboard.stroke("alt","left")
 end
 
---@help Lower volume
-actions.volume_down = function()
-    keyboard.stroke("volumedown")
+--@help Go forward
+actions.forward = function()
+    keyboard.stroke("alt","right")
 end
 
 --@help Mute volume
