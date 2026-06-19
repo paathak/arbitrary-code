@@ -36,21 +36,23 @@
         </row>
 
         <row>
-            <button icon="vup" onTap="volume_up" color="#202124" />
-            <button icon="home" onTap="launch_home" color="#1A73E8" />
             <button icon="up" onTap="scroll_up" color="#202124" />
+            <button icon="home" onTap="launch_home" color="#1A73E8" />
+            <button text="pgup" onTap="pg_up" color="#202124" />
         </row>
         
         <row>
-            <button icon="vdown" onTap="volume_down" color="#202124" />
-            <button icon="vmute" onTap="volume_mute" color="#202124" />
             <button icon="down" onTap="scroll_down" color="#202124" />
+            <button icon="vmute" onTap="volume_mute" color="#202124" />
+            <button text="pgdn" onTap="pg_down" color="#202124" />
         </row>
         
         <row>
+            <button icon="left" onTap="back" color="#202124" />
             <button icon="fullscreen" onTap="fullscreen" color="#202124" />
-            <button icon="back" onTap="window" color="#202124" />
-            </row>
+            <button text="esc" onTap="window" color="#202124" />
+            <button icon="right" onTap="forward" color="#202124" />
+        </row>
 
     </grid>
 </layout>
