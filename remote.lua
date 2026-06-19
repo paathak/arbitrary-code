@@ -55,6 +55,16 @@ actions.scroll_down = function()
     keyboard.stroke("down")
 end
 
+--@help Go back
+actions.back = function()
+    keyboard.stroke("alt","left")
+end
+
+--@help Go forward
+actions.forward = function()
+    keyboard.stroke("alt","right")
+end
+
 --@help Scroll page up (PgUp)
 actions.pg_up = function()
     keyboard.stroke("shift","space")
@@ -93,14 +103,14 @@ actions.play_pause = function()
     keyboard.stroke("space")
 end
 
---@help Go back
-actions.back = function()
-    keyboard.stroke("alt","left")
+--@help Volume up
+actions.volume_up = function()
+    keyboard.stroke("volumeup")
 end
 
---@help Go forward
-actions.forward = function()
-    keyboard.stroke("alt","right")
+--@help Volume down
+actions.volume_down = function()
+    keyboard.stroke("volumedown")
 end
 
 --@help Mute volume
