@@ -15,42 +15,39 @@
         </row>
 
         <row>
-            <button icon="back" text="&#x3008; +esc" onDown="hold_start_back_esc" onUp="hold_stop_back_esc" color="#202124" /> 
-            <button icon="home" onTap="launch_home" color="#1A73E8" />
-            <button icon="fullscreen" onDown="hold_start_fullscreen" onUp="hold_stop_fullscreen" color="#202124" />   
+            <button text="PgUp | &#8679; spc" onTap="pg_up" color="#202124" />
+            <button icon="up" onTap="scroll_up" color="#202124" />
+            <button text="PgDn | spc" onTap="pg_down" color="#202124" />
         </row>
         
         <row weight="4"> 
+            <button icon="rwd" onTap="rewind" color="#202124"  />    
             <touch id="touch" 
-                   ondown="down"
-                   onup="up" 
-                   onhold="hold"
-                   ontap="tap"
-                   ondoubletap="double"
-                   ontouchdelta="delta"
-                   text="Touchpad (Tap to Click)"
-                   color="#171717" /> 
+                    ondown="down"
+                    onup="up" 
+                    onhold="hold"
+                    ontap="tap"
+                    ondoubletap="double"
+                    ontouchdelta="delta"
+                    text="Click, Play/Pause"
+                    color="#171717"
+                    weight="5" /> 
+            <button icon="ff" onTap="forward" color="#202124"/>
         </row>
 
         <row>
             <button text="Left Click +R" onDown="hold_start_left_click_ref" onUp="hold_stop_left_click_ref" color="#202124" />
-            <button icon="up" onTap="scroll_up" color="#202124" />
+            <button icon="down" onTap="scroll_down" color="#202124" />
             <button text="Right Click" ontap="right" color="#202124" />
         </row>
-
-        <row>
-            <button icon="rwd" onTap="rewind" color="#202124" />        
-            <button icon="playpause" onTap="play_pause" color="#34A853" />
-            <button icon="ff" onTap="forward" color="#202124" />
-        </row>
         
-        <row>        
-            <button text="PgUp" onTap="pg_up" color="#202124" />
-            <button icon="down" onTap="scroll_down" color="#202124" />
-            <button text="PgDn" onTap="pg_down" color="#202124" />
+        <row weight="1">
+            <button icon="back" text="&#x3008; +esc" onDown="hold_start_back_esc" onUp="hold_stop_back_esc" color="#202124" /> 
+            <button icon="home" onTap="launch_home" color="#1A73E8" />
+            <button icon="fullscreen" onDown="hold_start_fullscreen" onUp="hold_stop_fullscreen" color="#202124" />   
         </row>
 
-        <row>
+        <row>        
             <button icon="vdown" onTap="volume_down" color="#202124" />
             <button icon="vmute" onTap="volume_mute" color="#202124" />
             <button icon="vup" onTap="volume_up" color="#202124" />
