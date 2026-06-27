@@ -174,11 +174,6 @@ actions.scroll_down = function()
     keyboard.stroke("down")
 end
 
---@help Go forward
-actions.forward = function()
-    keyboard.stroke("alt", "right")
-end
-
 --@help Scroll page up (PgUp)
 actions.pg_up = function()
     keyboard.stroke("shift", "space")
