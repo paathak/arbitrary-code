@@ -95,19 +95,48 @@ end
 -- SYSTEM & POWER CONTROLS
 -- ==========================================
 
+local function get_platform()
+    local ostype = (os.getenv("OSTYPE") or ""):lower()
+    if ostype:find("darwin") then
+        return "macos"
+    elseif os.getenv("OS") == "Windows_NT" or package.config:sub(1, 1) == "\\" then
+        return "windows"
+    end
+
+    return "linux"
+end
+
+local platform = get_platform()
+
 --@help Put system in sleep state
 actions.sleep = function()
-    os.execute("systemctl suspend")
+    if platform == "windows" then
+        os.execute("rundll32.exe powrprof.dll,SetSuspendState 0,1,0")
+    elseif platform == "macos" then
+        os.execute("pmset sleepnow")
+    else
+        os.execute("systemctl suspend")
+    end
 end
 
 --@help System shutdown
 actions.shutdown = function()
-    os.execute("systemctl poweroff")
+    if platform == "windows" then
+        os.execute("shutdown /s /t 0")
+    elseif platform == "macos" then
+        os.execute("shutdown -h now")
+    else
+        os.execute("systemctl poweroff")
+    end
 end
 
 --@help Close current app
 actions.close_app = function()
-    keyboard.stroke("alt", "f4")
+    if platform == "macos" then
+        keyboard.stroke("command", "q")
+    else
+        keyboard.stroke("alt", "f4")
+    end
 end
 
 -- ==========================================
@@ -143,6 +172,11 @@ end
 --@help Scroll page down
 actions.scroll_down = function()
     keyboard.stroke("down")
+end
+
+--@help Go forward
+actions.forward = function()
+    keyboard.stroke("alt", "right")
 end
 
 --@help Scroll page up (PgUp)
