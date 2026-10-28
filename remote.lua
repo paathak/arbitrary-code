@@ -48,7 +48,8 @@ actions.hold_start_left_click_ref = function()
     was_held = false
     -- Schedule the heavy action (Window/Esc) after 800 milliseconds
     hold_timer = timer.timeout(function()
-        keyboard.stroke("control","r") -- Long press action: refresh
+
+        mouse.click("left") -- Long press action: Fullscreen
         was_held = true
     end, 800)
 end
@@ -63,7 +64,7 @@ actions.hold_stop_left_click_ref = function()
     
     -- If the timer never expired, run standard short tap assignment
     if not was_held then
-        mouse.click("left") -- Short press action: Fullscreen
+        keyboard.stroke("control","r") -- Short press action: refresh
     end
 end
 
@@ -72,7 +73,7 @@ actions.hold_start_back_esc = function()
     was_held = false
     -- Schedule the heavy action (Window/Esc) after 800 milliseconds
     hold_timer = timer.timeout(function()
-        keyboard.stroke("escape") -- Long press action: esc
+        keyboard.stroke("alt", "left") -- Long press action: browser back
         was_held = true
     end, 800)
 end
@@ -87,8 +88,13 @@ actions.hold_stop_back_esc = function()
     
     -- If the timer never expired, run standard short tap assignment
     if not was_held then
-        keyboard.stroke("alt","left") -- Short press action: browser back
+        keyboard.stroke("escape") -- Short press action: escape
     end
+end
+
+--@help Resolve state execution when finger lifts from button
+actions.escape = function()
+        keyboard.stroke("escape")
 end
 
 -- ==========================================
@@ -149,9 +155,13 @@ actions.new_tab = function()
 end
 
 --@help Type address
-actions.address = function()
-    keyboard.stroke("control", "L")
-    device.keyboard()
+actions.back = function()
+    keyboard.stroke("alt", "left")
+end
+
+--@help Type address
+actions.change_tab = function()
+    keyboard.stroke("control", "tab")
 end
 
 --@help Close current tab
@@ -216,6 +226,11 @@ end
 --@help Mute volume
 actions.volume_mute = function()
     keyboard.stroke("volumemute")
+end
+
+--@help Goto Desktop
+actions.desktop = function()
+    keyboard.stroke("super","D")
 end
 
 -- ==========================================
